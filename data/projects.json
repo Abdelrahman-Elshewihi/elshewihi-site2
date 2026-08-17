@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ammar-doors",
+    "featured": true,
+    "image": "/images/project1.jpg",
+    "category": { "ar": "هوية بصرية", "en": "Brand Identity" },
+    "title": { "ar": "Ammar Doors — هوية بصرية متكاملة", "en": "Ammar Doors — Full Brand Identity" },
+    "desc": { "ar": "تصميم لوجو وكروت شخصية فاخرة لشركة أبواب مصفحة.", "en": "Luxury logo & business card design for an armored-door company." },
+    "problem": { "ar": "الشركة كانت محتاجة هوية بصرية تعكس الفخامة والثقة قدام العملاء.", "en": "The brand needed a visual identity that reflects luxury and trust." },
+    "did": { "ar": "صممت لوجو دائري فاخر بلمسة معدنية وذهبية، وكارت شخصي متكامل بخامات فاخرة وQR Code.", "en": "Designed a luxury circular metallic-gold logo and a complete premium business card with QR code." },
+    "tech": ["Illustrator", "Photoshop", "Brand Identity"],
+    "price": { "value": "2,500 — 4,000", "currency": "EGP" }
+  },
+  {
+    "id": "elite-nexus",
+    "featured": false,
+    "image": "/images/project2.jpg",
+    "category": { "ar": "تصميم لوجو", "en": "Logo Design" },
+    "title": { "ar": "Elite Nexus Group — شعار E.N.G", "en": "Elite Nexus Group — E.N.G Logo" },
+    "desc": { "ar": "لوجو نسر معدني فاخر بألوان ذهبية وكحلية.", "en": "Premium metallic eagle logo in gold & navy tones." },
+    "problem": { "ar": "محتاجين شعار بيوحي بالقوة والريادة لمجموعة شركات.", "en": "Needed a logo that conveys strength and leadership for a corporate group." },
+    "did": { "ar": "صممت شعار نسر مجسم بتفاصيل معدنية دقيقة وتوازن بصري كامل.", "en": "Designed a dimensional eagle emblem with fine metallic detail and full visual balance." },
+    "tech": ["Illustrator", "Photoshop", "3D Render"],
+    "price": { "value": "1,800 — 3,000", "currency": "EGP" }
+  }
+]
