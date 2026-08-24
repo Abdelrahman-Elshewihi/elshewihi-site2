@@ -3,24 +3,102 @@
     "id": "ammar-doors",
     "featured": true,
     "image": "/images/project1.jpg",
-    "category": { "ar": "هوية بصرية", "en": "Brand Identity" },
-    "title": { "ar": "Ammar Doors — هوية بصرية متكاملة", "en": "Ammar Doors — Full Brand Identity" },
-    "desc": { "ar": "تصميم لوجو وكروت شخصية فاخرة لشركة أبواب مصفحة.", "en": "Luxury logo & business card design for an armored-door company." },
-    "problem": { "ar": "الشركة كانت محتاجة هوية بصرية تعكس الفخامة والثقة قدام العملاء.", "en": "The brand needed a visual identity that reflects luxury and trust." },
-    "did": { "ar": "صممت لوجو دائري فاخر بلمسة معدنية وذهبية، وكارت شخصي متكامل بخامات فاخرة وQR Code.", "en": "Designed a luxury circular metallic-gold logo and a complete premium business card with QR code." },
-    "tech": ["Illustrator", "Photoshop", "Brand Identity"],
-    "price": { "value": "2,500 — 4,000", "currency": "EGP" }
+    "category": {
+      "ar": "هوية بصرية",
+      "en": "Brand Identity"
+    },
+    "title": {
+      "ar": "Ammar Doors — هوية بصرية متكاملة",
+      "en": "Ammar Doors — Full Brand Identity"
+    },
+    "desc": {
+      "ar": "تصميم لوجو وكروت شخصية فاخرة لشركة أبواب مصفحة.",
+      "en": "Luxury logo & business card design for an armored-door company."
+    },
+    "problem": {
+      "ar": "الشركة كانت محتاجة هوية بصرية تعكس الفخامة والثقة قدام العملاء.",
+      "en": "The brand needed a visual identity that reflects luxury and trust."
+    },
+    "did": {
+      "ar": "صممت لوجو دائري فاخر بلمسة معدنية وذهبية، وكارت شخصي متكامل بخامات فاخرة وQR Code.",
+      "en": "Designed a luxury circular metallic-gold logo and a complete premium business card with QR code."
+    },
+    "tech": [
+      "Illustrator",
+      "Photoshop",
+      "Brand Identity"
+    ],
+    "price": {
+      "value": "100",
+      "currency": "USD"
+    }
   },
   {
     "id": "elite-nexus",
     "featured": false,
     "image": "/images/project2.jpg",
-    "category": { "ar": "تصميم لوجو", "en": "Logo Design" },
-    "title": { "ar": "Elite Nexus Group — شعار E.N.G", "en": "Elite Nexus Group — E.N.G Logo" },
-    "desc": { "ar": "لوجو نسر معدني فاخر بألوان ذهبية وكحلية.", "en": "Premium metallic eagle logo in gold & navy tones." },
-    "problem": { "ar": "محتاجين شعار بيوحي بالقوة والريادة لمجموعة شركات.", "en": "Needed a logo that conveys strength and leadership for a corporate group." },
-    "did": { "ar": "صممت شعار نسر مجسم بتفاصيل معدنية دقيقة وتوازن بصري كامل.", "en": "Designed a dimensional eagle emblem with fine metallic detail and full visual balance." },
-    "tech": ["Illustrator", "Photoshop", "3D Render"],
-    "price": { "value": "1,800 — 3,000", "currency": "EGP" }
+    "category": {
+      "ar": "تصميم لوجو",
+      "en": "Logo Design"
+    },
+    "title": {
+      "ar": "Elite Nexus Group — شعار E.N.G",
+      "en": "Elite Nexus Group — E.N.G Logo"
+    },
+    "desc": {
+      "ar": "لوجو نسر معدني فاخر بألوان ذهبية وكحلية.",
+      "en": "Premium metallic eagle logo in gold & navy tones."
+    },
+    "problem": {
+      "ar": "محتاجين شعار بيوحي بالقوة والريادة لمجموعة شركات.",
+      "en": "Needed a logo that conveys strength and leadership for a corporate group."
+    },
+    "did": {
+      "ar": "صممت شعار نسر مجسم بتفاصيل معدنية دقيقة وتوازن بصري كامل.",
+      "en": "Designed a dimensional eagle emblem with fine metallic detail and full visual balance."
+    },
+    "tech": [
+      "Illustrator",
+      "Photoshop",
+      "3D Render"
+    ],
+    "price": {
+      "value": "50",
+      "currency": "USD"
+    }
+  },
+  {
+    "id": "dr-samah-pharmacy-card",
+    "featured": false,
+    "image": "/images/project3.jpg",
+    "category": {
+      "ar": "تصميم كارت صيدلية",
+      "en": "Pharmacy Card Design"
+    },
+    "title": {
+      "ar": "صيدلية د. سماح ياسم — تصميم كارت",
+      "en": "Dr. Samah Pharmacy — Business Card Design"
+    },
+    "desc": {
+      "ar": "إعادة تصميم كارت صيدلية مع الحفاظ على الهوية البصرية القديمة، مع طابع عصري ومنظم.",
+      "en": "A modern and organized pharmacy business card redesign while preserving the original visual identity."
+    },
+    "problem": {
+      "ar": "الكارت القديم كان يحتاج إلى تطوير بصري يحافظ على الهوية ويقدمها بشكل أكثر عصرية واحترافية.",
+      "en": "The previous card needed a visual refresh that preserved the identity while presenting it in a more modern and professional way."
+    },
+    "did": {
+      "ar": "طورت توزيع العناصر والألوان والأشكال مع الحفاظ على الطابع البصري الأساسي وإبراز بيانات التواصل بشكل واضح.",
+      "en": "Refined the layout, colors, and graphic elements while preserving the core visual identity and making contact details clearer."
+    },
+    "tech": [
+      "Illustrator",
+      "Photoshop",
+      "Graphic Design"
+    ],
+    "price": {
+      "value": "60",
+      "currency": "USD"
+    }
   }
 ]
