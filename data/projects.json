@@ -25,8 +25,15 @@
         "ar": "صممت لوجو دائري فاخر بلمسة معدنية وذهبية، وكارت شخصي متكامل بخامات فاخرة وQR Code.",
         "en": "Designed a luxury circular metallic-gold logo and a complete premium business card with QR code."
       },
-      "tech": ["Illustrator", "Photoshop", "Brand Identity"],
-      "price": { "value": "100", "currency": "USD" }
+      "tech": [
+        "Illustrator",
+        "Photoshop",
+        "Brand Identity"
+      ],
+      "price": {
+        "value": "2,500 — 4,000",
+        "currency": "EGP"
+      }
     },
     {
       "id": "elite-nexus",
@@ -46,15 +53,22 @@
         "en": "Premium metallic eagle logo in gold & navy tones."
       },
       "problem": {
-        "ar": "فريق كان شغال على مشروع معقد جدًا، والحاجة اللي خلته ينجح إنهم اتحدوا زي القلب الواحد — وعلى أساس الفكرة دي اخترنا اسم الرابطة النخبوية (Elite Nexus) كهوية للمجموعة.",
-        "en": "A team was working on a highly complex project, and what made them succeed was uniting like a single heart — which is why the group took the name Elite Nexus as its identity."
+        "ar": "محتاجين شعار بيوحي بالقوة والريادة لمجموعة شركات.",
+        "en": "Needed a logo that conveys strength and leadership for a corporate group."
       },
       "did": {
         "ar": "صممت شعار نسر مجسم بتفاصيل معدنية دقيقة وتوازن بصري كامل.",
         "en": "Designed a dimensional eagle emblem with fine metallic detail and full visual balance."
       },
-      "tech": ["Illustrator", "Photoshop", "3D Render"],
-      "price": { "value": "50", "currency": "USD" }
+      "tech": [
+        "Illustrator",
+        "Photoshop",
+        "3D Render"
+      ],
+      "price": {
+        "value": "1,800 — 3,000",
+        "currency": "EGP"
+      }
     }
   ]
 }
