@@ -26,7 +26,14 @@ collections:
         fields:
           - { label: "المعرّف (id — إنجليزي، بدون مسافات)", name: "id", widget: "string" }
           - { label: "مشروع مميز (كارت كبير)؟", name: "featured", widget: "boolean", default: false }
-          - { label: "صورة المشروع", name: "image", widget: "image" }
+          - label: "التصنيفات (لظهور المشروع تحت فلتر معين)"
+            name: "tags"
+            widget: "select"
+            multiple: true
+            options: ["logo", "card", "website", "video", "app", "voice"]
+          - { label: "صورة المشروع (اختياري لو فيه فيديو — هتتاخد صورة يوتيوب تلقائي)", name: "image", widget: "image", required: false }
+          - { label: "كود فيديو يوتيوب (بس الكود، مش اللينك كامل)", name: "video", widget: "string", required: false }
+          - { label: "الفيديو عمودي (Shorts)؟", name: "videoVertical", widget: "boolean", default: false, required: false }
           - label: "التصنيف"
             name: "category"
             widget: "object"
@@ -66,4 +73,4 @@ collections:
             widget: "object"
             fields:
               - { label: "النطاق السعري (مثال: 2,500 — 4,000)", name: "value", widget: "string" }
-              - { label: "العملة", name: "currency", widget: "string", default: "EGP" }
+              - { label: "العملة", name: "currency", widget: "string", default: "USD" }
