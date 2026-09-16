@@ -48,7 +48,7 @@ const I18N = {
     projValue:"القيمة التقديرية", viewLabel:"عرض", openLabel:"فتح",
     contactEyebrow:"لنبدأ مشروعك", whatsappBtn:"واتساب", linkedinBtn:"LinkedIn",
     footNote:"صُمم وبُني يدويًا — 2026. أول مشروع في الـPortfolio هو الـPortfolio نفسه.",
-    modalProblem:"المشكلة", modalDid:"اللي عملته", modalValue:"القيمة التقديرية"
+    modalProblem:"المشكلة", modalDid:"اللي عملته", modalValue:"القيمة التقديرية", watchOnYoutube:"شاهد الفيديو على يوتيوب ↗"
   },
   en:{
     skip:"Skip to content", introSkip:"Tap anywhere to continue",
@@ -71,7 +71,7 @@ const I18N = {
     projValue:"Est. value", viewLabel:"VIEW", openLabel:"OPEN",
     contactEyebrow:"Start your project", whatsappBtn:"WhatsApp", linkedinBtn:"LinkedIn",
     footNote:"Designed & built by hand — 2026. This portfolio is itself project #1.",
-    modalProblem:"The problem", modalDid:"What I did", modalValue:"Est. value"
+    modalProblem:"The problem", modalDid:"What I did", modalValue:"Est. value", watchOnYoutube:"Watch on YouTube ↗"
   }
 };
 let LANG = "ar";
@@ -158,7 +158,10 @@ function renderProjects(){
 
     const valueText = document.createElement("span");
     valueText.className = "v";
-    valueText.textContent = `${project.price.value} ${project.price.currency}`;
+    // priceText (لو موجود) بيبقى بديل نصي زي "تواصل معنا"، وبيتقدم على السعر الرقمي
+    valueText.textContent = project.priceText
+      ? getLocalized(project.priceText)
+      : `${project.price.value} ${project.price.currency}`;
 
     body.append(category, title, description, open);
     value.append(valueLabel, valueText);
@@ -212,9 +215,14 @@ function openModal(p){
     // p.videoVertical = true لو الفيديو Shorts (عمودي)، بيخلي الصندوق طولي بدل عريض
     videoWrap.classList.toggle("vertical", !!p.videoVertical);
     modalImg.classList.add("hidden");
+    // رابط احتياطي: لو الفيديو مش راضي يشتغل جوه الموقع (مثلاً "Allow embedding" مقفول من يوتيوب)
+    const fallback = document.getElementById("modalVideoFallback");
+    fallback.href = `https://www.youtube.com/watch?v=${p.video}`;
+    fallback.classList.add("active");
   }else{
     videoFrame.src = "";
     videoWrap.classList.remove("active", "vertical");
+    document.getElementById("modalVideoFallback").classList.remove("active");
     modalImg.classList.remove("hidden");
     // لو المشروع مفيهوش صورة غلاف مرفوعة، وفيه فيديو، بناخد صورة الغلاف تلقائي من يوتيوب
     modalImg.src = p.image || (p.video ? `https://img.youtube.com/vi/${p.video}/hqdefault.jpg` : "");
@@ -235,7 +243,10 @@ function openModal(p){
   document.getElementById("modalDidLabel").textContent = t("modalDid");
   document.getElementById("modalDid").textContent = getLocalized(p.did);
   document.getElementById("modalValueLabel").textContent = t("modalValue");
-  document.getElementById("modalPrice").textContent = `${p.price.value} ${p.price.currency}`;
+  // priceText (لو موجود) بيبقى بديل نصي زي "تواصل معنا"، وبيتقدم على السعر الرقمي
+  document.getElementById("modalPrice").textContent = p.priceText
+    ? getLocalized(p.priceText)
+    : `${p.price.value} ${p.price.currency}`;
   const overlay = document.getElementById("modalOverlay");
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden","false");
