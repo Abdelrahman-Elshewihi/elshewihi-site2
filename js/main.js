@@ -1,9 +1,27 @@
 /* =====================================================
    DATA
-   All project content lives in data/projects.json.
+   كل محتوى المشاريع موجود في data/projects.json — مش هنا.
+   عشان تضيف مشروع جديد، افتح data/projects.json بس ومتلمسش الملف ده.
+
+   شكل كل مشروع في projects.json:
+   {
+     "id": "معرّف فريد بالإنجليزي",
+     "featured": true/false          -> true = كارت كبير في الأول
+     "image": "images/xxx.jpg"       -> اختياري لو فيه "video"
+     "video": "كود يوتيوب فقط"        -> اختياري، لو موجود بيشغل فيديو بدل الصورة
+     "videoVertical": true/false     -> true لو الفيديو Shorts (عمودي)
+     "tags": ["logo","card","website","video","app","voice"]  -> يحدد تحت أي فلتر يظهر
+     "category": {"ar":"..","en":".."},
+     "title":    {"ar":"..","en":".."},
+     "desc":     {"ar":"..","en":".."},
+     "problem":  {"ar":"..","en":".."},
+     "did":      {"ar":"..","en":".."},
+     "tech": ["اسم أداة 1","اسم أداة 2"],
+     "price": {"value":"100","currency":"USD"}
+   }
 ===================================================== */
 let PROJECTS = [];
-let CURRENT_FILTER = "all";
+let CURRENT_FILTER = "all"; // "all" أو أي كلمة من الـ tags (logo/card/website/video/app/voice)
 
 /* =====================================================
    i18n
@@ -98,9 +116,19 @@ function renderProjects(){
     media.className = "proj-media";
 
     const image = document.createElement("img");
-    image.src = project.image;
+    // لو مفيش "image" متحطة للمشروع وعنده فيديو، هناخد صورة الغلاف تلقائي من يوتيوب — مش لازم ترفع صورة بنفسك لكل فيديو
+    image.src = project.image || (project.video ? `https://img.youtube.com/vi/${project.video}/hqdefault.jpg` : "");
     image.alt = getLocalized(project.title);
     image.loading = "lazy";
+
+    media.appendChild(image);
+
+    if(project.video){
+      const playIcon = document.createElement("div");
+      playIcon.className = "proj-play";
+      playIcon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="rgba(5,7,12,.55)" stroke="rgba(255,255,255,.5)"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="#fff"/></svg>`;
+      media.appendChild(playIcon);
+    }
 
     const body = document.createElement("div");
     body.className = "proj-body";
@@ -132,7 +160,6 @@ function renderProjects(){
     valueText.className = "v";
     valueText.textContent = `${project.price.value} ${project.price.currency}`;
 
-    media.appendChild(image);
     body.append(category, title, description, open);
     value.append(valueLabel, valueText);
     card.append(glare, media, body, value);
@@ -174,8 +201,25 @@ function setupTilt(){
 }
 
 function openModal(p){
-  document.getElementById("modalImg").src = p.image;
-  document.getElementById("modalImg").alt = getLocalized(p.title);
+  // بيحدد إيه اللي يتعرض في أعلى نافذة التفاصيل: فيديو يوتيوب لو موجود، أو صورة الغلاف لو مفيش
+  const modalImg = document.getElementById("modalImg");
+  const videoWrap = document.getElementById("modalVideoWrap");
+  const videoFrame = document.getElementById("modalVideoFrame");
+  if(p.video){
+    // p.video = كود الفيديو بس (من https://youtu.be/CODE أو /shorts/CODE) — مش اللينك كامل
+    videoFrame.src = `https://www.youtube.com/embed/${p.video}?rel=0`;
+    videoWrap.classList.add("active");
+    // p.videoVertical = true لو الفيديو Shorts (عمودي)، بيخلي الصندوق طولي بدل عريض
+    videoWrap.classList.toggle("vertical", !!p.videoVertical);
+    modalImg.classList.add("hidden");
+  }else{
+    videoFrame.src = "";
+    videoWrap.classList.remove("active", "vertical");
+    modalImg.classList.remove("hidden");
+    // لو المشروع مفيهوش صورة غلاف مرفوعة، وفيه فيديو، بناخد صورة الغلاف تلقائي من يوتيوب
+    modalImg.src = p.image || (p.video ? `https://img.youtube.com/vi/${p.video}/hqdefault.jpg` : "");
+    modalImg.alt = getLocalized(p.title);
+  }
   document.getElementById("modalCat").textContent = getLocalized(p.category);
   document.getElementById("modalTitle").textContent = getLocalized(p.title);
   document.getElementById("modalDesc").textContent = getLocalized(p.desc);
@@ -199,6 +243,7 @@ function openModal(p){
 }
 function closeModal(){
   const overlay = document.getElementById("modalOverlay");
+  document.getElementById("modalVideoFrame").src = "";
   overlay.classList.remove("open");
   overlay.setAttribute("aria-hidden","true");
   document.body.style.overflow = "";
