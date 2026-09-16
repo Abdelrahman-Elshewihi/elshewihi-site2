@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <title>لوحة تحكم — Abdelrahman Elshewihi</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <!-- يحمّل Decap CMS ويقرأ الإعدادات من config.yml بجانبه -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // يربط تسجيل الدخول (Netlify Identity) بالـCMS، ويحوّل المستخدم صح بعد تأكيد الدعوة/الباسورد
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
