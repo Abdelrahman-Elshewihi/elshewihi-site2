@@ -53,8 +53,8 @@
         "en": "Premium metallic eagle logo in gold & navy tones."
       },
       "problem": {
-        "ar": "محتاجين شعار بيوحي بالقوة والريادة لمجموعة شركات.",
-        "en": "Needed a logo that conveys strength and leadership for a corporate group."
+        "ar": "فريق كان شغال على مشروع معقد جدًا، والحاجة اللي خلته ينجح إنهم اتحدوا زي القلب الواحد — وعلى أساس الفكرة دي اخترنا اسم الرابطة النخبوية (Elite Nexus) كهوية للمجموعة.",
+        "en": "A team was working on a highly complex project, and what made them succeed was uniting like a single heart — which is why the group took the name Elite Nexus as its identity."
       },
       "did": {
         "ar": "صممت شعار نسر مجسم بتفاصيل معدنية دقيقة وتوازن بصري كامل.",
@@ -67,6 +67,41 @@
       ],
       "price": {
         "value": "50",
+        "currency": "USD"
+      }
+    },
+    {
+      "id": "reel-edit-01",
+      "featured": false,
+      "video": "SEZyahqN5nk",
+      "videoVertical": true,
+      "tags": ["video"],
+      "category": {
+        "ar": "مونتاج فيديو",
+        "en": "Video Editing"
+      },
+      "title": {
+        "ar": "عدّل الاسم والوصف ليطابقوا الفيديو",
+        "en": "Edit this title & description to match the video"
+      },
+      "desc": {
+        "ar": "وصف قصير — إيه اللي الفيديو ده بيعرضه؟",
+        "en": "Short description — what does this video show?"
+      },
+      "problem": {
+        "ar": "المشكلة أو الهدف اللي الفيديو ده بيحققه.",
+        "en": "The problem or goal this video achieves."
+      },
+      "did": {
+        "ar": "اللي عملته في المونتاج (قص، انتقالات، تصحيح ألوان... إلخ).",
+        "en": "What you did in the edit (cuts, transitions, color grading, etc)."
+      },
+      "tech": [
+        "Premiere Pro",
+        "After Effects"
+      ],
+      "price": {
+        "value": "75",
         "currency": "USD"
       }
     }
