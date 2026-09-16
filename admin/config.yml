@@ -68,9 +68,17 @@ collections:
             name: "tech"
             widget: "list"
             field: { label: "تقنية", name: "tech_item", widget: "string" }
-          - label: "السعر التقريبي"
+          - label: "السعر التقريبي (اتركه فاضي لو هتستخدم priceText بدله)"
             name: "price"
             widget: "object"
+            required: false
             fields:
-              - { label: "النطاق السعري (مثال: 2,500 — 4,000)", name: "value", widget: "string" }
-              - { label: "العملة", name: "currency", widget: "string", default: "USD" }
+              - { label: "النطاق السعري (مثال: 2,500 — 4,000)", name: "value", widget: "string", required: false }
+              - { label: "العملة", name: "currency", widget: "string", default: "USD", required: false }
+          - label: "نص سعر بديل (مثلاً: تواصل معنا) — بيتقدم على السعر الرقمي لو موجود"
+            name: "priceText"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "عربي", name: "ar", widget: "string", required: false }
+              - { label: "English", name: "en", widget: "string", required: false }
