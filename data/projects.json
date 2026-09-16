@@ -81,28 +81,27 @@
         "en": "Video Editing"
       },
       "title": {
-        "ar": "عدّل الاسم والوصف ليطابقوا الفيديو",
-        "en": "Edit this title & description to match the video"
+        "ar": "فيديو موشن جرافيك — تحذير من الكِبر",
+        "en": "Motion Graphics Video — A Warning Against Arrogance"
       },
       "desc": {
-        "ar": "وصف قصير — إيه اللي الفيديو ده بيعرضه؟",
-        "en": "Short description — what does this video show?"
+        "ar": "فيديو مونتاج بسيط، مبني بالكامل بالجرافيك ديزاين من غير أي لقطات فيديو حقيقية.",
+        "en": "A simple edited video built entirely with graphic design, with no real video footage."
       },
       "problem": {
-        "ar": "المشكلة أو الهدف اللي الفيديو ده بيحققه.",
-        "en": "The problem or goal this video achieves."
+        "ar": "الهدف كان إيصال الفكرة والرسالة بوضوح وبساطة، مش استعراض مهارات مونتاج معقدة.",
+        "en": "The goal was to communicate the message clearly and simply, not to showcase complex editing skills."
       },
       "did": {
-        "ar": "اللي عملته في المونتاج (قص، انتقالات، تصحيح ألوان... إلخ).",
-        "en": "What you did in the edit (cuts, transitions, color grading, etc)."
+        "ar": "صممت كل الحركة والانتقالات جرافيكياً باستخدام Alight Motion، مع التركيز على وضوح النص وسهولة القراءة.",
+        "en": "Designed all the motion and transitions graphically using Alight Motion, focusing on text clarity and readability."
       },
       "tech": [
-        "Premiere Pro",
-        "After Effects"
+        "Alight Motion"
       ],
-      "price": {
-        "value": "75",
-        "currency": "USD"
+      "priceText": {
+        "ar": "تواصل معنا لمعرفة تفاصيل الباقات",
+        "en": "Contact us for package details"
       }
     }
   ]
