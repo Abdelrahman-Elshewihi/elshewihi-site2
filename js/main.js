@@ -206,14 +206,22 @@ function setupTilt(){
 function openModal(p){
   // بيحدد إيه اللي يتعرض في أعلى نافذة التفاصيل: فيديو يوتيوب لو موجود، أو صورة الغلاف لو مفيش
   const modalImg = document.getElementById("modalImg");
+  const modalMedia = document.querySelector(".modal-media");
   const videoWrap = document.getElementById("modalVideoWrap");
   const videoFrame = document.getElementById("modalVideoFrame");
+  const videoBackdrop = document.getElementById("modalVideoBackdrop");
   if(p.video){
     // p.video = كود الفيديو بس (من https://youtu.be/CODE أو /shorts/CODE) — مش اللينك كامل
     videoFrame.src = `https://www.youtube.com/embed/${p.video}?rel=0`;
     videoWrap.classList.add("active");
-    // p.videoVertical = true لو الفيديو Shorts (عمودي)، بيخلي الصندوق طولي بدل عريض
+    // بنلغي نسبة العرض الثابتة بتاعة modal-media يدوياً (احتياط لأي متصفح مايدعمش :has في CSS)
+    modalMedia.style.aspectRatio = "auto";
+    // p.videoVertical = true لو الفيديو Shorts (عمودي) → الصندوق الداخلي يبقى طولي 9:16
+    // أو عريض 16:9 لو مش عمودي — وفي الحالتين الفيديو بيظهر كامل من غير أي قص
     videoWrap.classList.toggle("vertical", !!p.videoVertical);
+    videoWrap.classList.toggle("horizontal", !p.videoVertical);
+    // الفراغ حوالين الفيديو بيتملى بنسخة مموّهة من صورة غلاف نفس الفيديو (تأثير زي Apple Music)
+    videoBackdrop.style.backgroundImage = `url(https://img.youtube.com/vi/${p.video}/hqdefault.jpg)`;
     modalImg.classList.add("hidden");
     // رابط احتياطي: لو الفيديو مش راضي يشتغل جوه الموقع (مثلاً "Allow embedding" مقفول من يوتيوب)
     const fallback = document.getElementById("modalVideoFallback");
@@ -221,7 +229,8 @@ function openModal(p){
     fallback.classList.add("active");
   }else{
     videoFrame.src = "";
-    videoWrap.classList.remove("active", "vertical");
+    videoWrap.classList.remove("active", "vertical", "horizontal");
+    modalMedia.style.aspectRatio = "";
     document.getElementById("modalVideoFallback").classList.remove("active");
     modalImg.classList.remove("hidden");
     // لو المشروع مفيهوش صورة غلاف مرفوعة، وفيه فيديو، بناخد صورة الغلاف تلقائي من يوتيوب
@@ -255,6 +264,7 @@ function openModal(p){
 function closeModal(){
   const overlay = document.getElementById("modalOverlay");
   document.getElementById("modalVideoFrame").src = "";
+  document.getElementById("modalVideoBackdrop").style.backgroundImage = "";
   overlay.classList.remove("open");
   overlay.setAttribute("aria-hidden","true");
   document.body.style.overflow = "";
