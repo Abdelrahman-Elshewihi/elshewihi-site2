@@ -978,3 +978,58 @@ html[data-theme="light"] .nav-cta{
 }
 .modal-video-fallback.active{ display:block; }
 .modal-video-fallback:hover{ color:var(--text); }
+
+/* =====================================================
+   إعادة تنظيم قسم المهارات — 4 مجموعات واضحة (تصميم / ويب / برمجة / أدوات)
+   الفصل بين الخدمات والمهارات والتقنيات، بنفس هوية التصميم الحالية.
+===================================================== */
+
+/* المجموعات فوق بعض بفواصل هادئة بدل مسافة موحّدة بس */
+.skill-groups{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  max-width:820px;
+}
+.skill-group{
+  padding-top:0;
+}
+.skill-group:not(:first-child){
+  margin-top:30px;
+  padding-top:30px;
+  border-top:1px solid var(--border);
+}
+
+/* عنوان كل مجموعة: عربي بارز + كابشن إنجليزي صغير تحته (زي أسلوب الـeyebrow في باقي الموقع) */
+.skill-group-head{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.skill-group-head h4{
+  margin-bottom:0;
+}
+.skill-group-sub{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+  white-space:nowrap;
+}
+
+/* الفقاعات: بنفس الشكل الحالي (نص واحد، حجم موحّد)، بس مسافات أهدأ شوية */
+.chip-cloud{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  max-width:none;
+}
+
+@media(max-width:900px){
+  .skill-group:not(:first-child){ margin-top:24px; padding-top:24px; }
+  .skill-group-head{ gap:8px; }
+  .skill-group-sub{ font-size:10px; }
+}
