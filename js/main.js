@@ -24,6 +24,36 @@ let PROJECTS = [];
 let CURRENT_FILTER = "all"; // "all" أو أي كلمة من الـ tags (logo/card/website/video/app/voice)
 
 /* =====================================================
+   PROMO — إعدادات العرض/الخصم
+   ده المكان الوحيد اللي محتاج تعدل فيه عشان تشغّل/توقف أي عرض مستقبلي.
+
+   active   -> true يشغّل العرض على كل المشاريع اللي ليها سعر رقمي، false يوقفه فوراً
+   percent  -> نسبة الخصم (مثلاً 60 يعني خصم 60%)
+   label    -> نص لافتة العرض اللي بتظهر فوق قسم الأعمال
+
+   السعر الأصلي بيتحسب تلقائياً من نسبة الخصم — يعني لو غيّرت "percent"
+   كل أسعار المشاريع هتتحدث لوحدها من غير ما تلمس projects.json خالص.
+   المشاريع اللي سعرها نصي (زي "تواصل معنا") مش بتتأثر بالعرض.
+===================================================== */
+const PROMO = {
+  active: true,
+  percent: 60,
+  label: {
+    ar: "🎒 خصم %60 بمناسبة العودة المدرسية — لفترة محدودة",
+    en: "🎒 60% Off — Back to School Offer, Limited Time"
+  }
+};
+
+// بيحسب السعر بعد الخصم لأي مشروع، وبيرجع null لو العرض متوقف أو المشروع سعره نصي مش رقمي
+function getDiscount(project){
+  if(!PROMO.active || !project.price || !project.price.value) return null;
+  const original = parseFloat(String(project.price.value).replace(/,/g, ""));
+  if(isNaN(original)) return null;
+  const discounted = Math.round(original * (1 - PROMO.percent / 100));
+  return { original, discounted, currency: project.price.currency };
+}
+
+/* =====================================================
    i18n
 ===================================================== */
 const I18N = {
@@ -89,6 +119,19 @@ function applyI18n(){
   document.documentElement.lang = LANG;
   document.documentElement.dir = LANG==="ar" ? "rtl" : "ltr";
   document.getElementById("langToggle").textContent = LANG==="ar" ? "EN" : "AR";
+  applyPromoBanner();
+}
+
+// بيظهر لافتة العرض فوق قسم الأعمال لو PROMO.active = true، وبيخفيها تلقائي لو العرض اتوقف
+function applyPromoBanner(){
+  const banner = document.getElementById("promoBanner");
+  if(!banner) return;
+  if(PROMO.active){
+    banner.textContent = PROMO.label[LANG] || PROMO.label.ar;
+    banner.classList.add("active");
+  }else{
+    banner.classList.remove("active");
+  }
 }
 
 /* =====================================================
@@ -122,6 +165,15 @@ function renderProjects(){
     image.loading = "lazy";
 
     media.appendChild(image);
+
+    // شارة "-60%" ثابتة على غلاف أي مشروع سعره اتخفّض، وبتفضل ظاهرة على الموبايل والديسكتوب من غير الحاجة لعمل hover
+    const discount = getDiscount(project);
+    if(discount){
+      const saleBadge = document.createElement("div");
+      saleBadge.className = "sale-badge";
+      saleBadge.textContent = `-${PROMO.percent}%`;
+      media.appendChild(saleBadge);
+    }
 
     if(project.video){
       const playIcon = document.createElement("div");
@@ -158,10 +210,18 @@ function renderProjects(){
 
     const valueText = document.createElement("span");
     valueText.className = "v";
-    // priceText (لو موجود) بيبقى بديل نصي زي "تواصل معنا"، وبيتقدم على السعر الرقمي
-    valueText.textContent = project.priceText
-      ? getLocalized(project.priceText)
-      : `${project.price.value} ${project.price.currency}`;
+    // priceText (لو موجود) بيبقى بديل نصي زي "تواصل معنا"، وبيتقدم على أي حاجة تانية
+    // بعده: لو فيه خصم فعّال، بيتعرض السعر الأصلي مشطوب + السعر الجديد بارز
+    // وإلا السعر العادي زي ما هو
+    if(project.priceText){
+      valueText.textContent = getLocalized(project.priceText);
+    }else if(discount){
+      // ملحوظة مهمة: الاتجاه dir="ltr" هنا إجباري — من غيره المتصفح بيقلب ترتيب
+      // الأرقام والعملة عشوائي لأن الصفحة كلها RTL والأرقام طبيعتها LTR
+      valueText.innerHTML = `<span class="price-value" dir="ltr"><s class="price-original">${discount.original}</s> <b class="price-discounted">${discount.discounted}</b> <span class="price-currency">${discount.currency}</span></span>`;
+    }else{
+      valueText.innerHTML = `<span class="price-value" dir="ltr">${project.price.value} ${project.price.currency}</span>`;
+    }
 
     body.append(category, title, description, open);
     value.append(valueLabel, valueText);
@@ -252,10 +312,21 @@ function openModal(p){
   document.getElementById("modalDidLabel").textContent = t("modalDid");
   document.getElementById("modalDid").textContent = getLocalized(p.did);
   document.getElementById("modalValueLabel").textContent = t("modalValue");
-  // priceText (لو موجود) بيبقى بديل نصي زي "تواصل معنا"، وبيتقدم على السعر الرقمي
-  document.getElementById("modalPrice").textContent = p.priceText
-    ? getLocalized(p.priceText)
-    : `${p.price.value} ${p.price.currency}`;
+  // priceText (لو موجود) بيبقى بديل نصي زي "تواصل معنا"، وبيتقدم على أي حاجة تانية
+  const modalDiscount = getDiscount(p);
+  const modalSaleBadge = document.getElementById("modalSaleBadge");
+  const modalPriceEl = document.getElementById("modalPrice");
+  if(p.priceText){
+    modalPriceEl.textContent = getLocalized(p.priceText);
+    modalSaleBadge.textContent = "";
+  }else if(modalDiscount){
+    // نفس ملحوظة الاتجاه: dir="ltr" إجباري عشان الترتيب مايتقلبش في صفحة RTL
+    modalPriceEl.innerHTML = `<span class="price-value" dir="ltr"><s class="price-original">${modalDiscount.original}</s> <span class="price-discounted">${modalDiscount.discounted}</span> <span class="price-currency">${modalDiscount.currency}</span></span>`;
+    modalSaleBadge.textContent = `-${PROMO.percent}%`;
+  }else{
+    modalPriceEl.innerHTML = `<span class="price-value" dir="ltr">${p.price.value} ${p.price.currency}</span>`;
+    modalSaleBadge.textContent = "";
+  }
   const overlay = document.getElementById("modalOverlay");
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden","false");
