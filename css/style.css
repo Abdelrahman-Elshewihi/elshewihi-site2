@@ -326,7 +326,7 @@ html[lang="en"] .skill-group h4{font-family:var(--font-display); font-size:18px;
   opacity:0; transform:translateY(6px); transition:.4s var(--ease); display:flex; align-items:center; gap:6px;
 }
 .proj-card:hover .proj-value{opacity:1; transform:translateY(0);}
-.proj-value .k{color:var(--text-faint);}
+.proj-value .k{color:var(--accent-2); opacity:.85;}
 .proj-value .v{color:var(--accent-2); font-weight:600;}
 
 /* modal */
@@ -505,7 +505,7 @@ a:focus-visible, button:focus-visible, textarea:focus-visible{
 .contact-cta-row { justify-content: center; margin-top: 20px; }
 .footer-logo { justify-content: center; display: flex; }
 .modal-title { font-size: var(--modal-title-size); }
-.modal-value-label { font-size: 12px; color: var(--text-faint); }
+.modal-value-label { font-size: 12px; color: var(--accent-2); opacity:.85; }
 
 
 /* =====================================================
@@ -1032,4 +1032,90 @@ html[data-theme="light"] .nav-cta{
   .skill-group:not(:first-child){ margin-top:24px; padding-top:24px; }
   .skill-group-head{ gap:8px; }
   .skill-group-sub{ font-size:10px; }
+}
+
+/* =====================================================
+   نظام العروض والخصومات
+   الألوان دي (ذهبي دافئ) مقصودة ومنفصلة عن هوية الموقع الأساسية
+   (الأزرق/التركواز)، عشان شارة الخصم تلفت النظر فوراً وتوحي بالفخامة
+   في نفس الوقت — بنفس روح الذهبي المستخدم في مشاريع Ammar Doors وElite Nexus.
+===================================================== */
+
+/* لافتة العرض فوق قسم الأعمال */
+.promo-banner{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-align:center;
+  font-family:var(--font-mono);
+  font-size:13px;
+  font-weight:600;
+  color:#f5c266;
+  background:linear-gradient(135deg, rgba(245,185,66,.12), rgba(224,142,43,.06));
+  border:1px solid rgba(245,185,66,.35);
+  border-radius:100px;
+  padding:12px 22px;
+  margin-bottom:28px;
+}
+.promo-banner.active{ display:flex; }
+
+/* شارة "-60%" الثابتة على غلاف الكارت */
+.sale-badge{
+  position:absolute;
+  top:14px; inset-inline-start:14px;
+  z-index:3;
+  font-family:var(--font-mono);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.02em;
+  color:#241503;
+  background:linear-gradient(135deg,#f5b942,#e08e2b);
+  padding:6px 12px;
+  border-radius:100px;
+  box-shadow:0 8px 20px -6px rgba(245,185,66,.55);
+}
+
+/* الصندوق الموحّد للسعر بالكامل — بيضمن ترتيب ثابت للأرقام والعملة حتى في صفحة RTL */
+.price-value{
+  display:inline-flex;
+  align-items:baseline;
+  gap:5px;
+}
+/* السعر الأصلي المشطوب (الرقم بس) + وحدة العملة الظاهرة عادي + السعر الجديد */
+.price-original{
+  color:var(--text-faint);
+  text-decoration:line-through;
+  font-weight:400;
+  font-size:.85em;
+}
+.price-currency{
+  color:var(--text-faint);
+  font-size:.8em;
+  font-weight:400;
+}
+.price-discounted{
+  color:#f5b942;
+  font-weight:700;
+}
+.price-discounted + .price-currency{
+  color:#f5b942;
+}
+
+/* صف السعر جوه المودال + شارة الخصم بجانبه */
+.modal-price-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.modal-sale-badge{
+  position:static;
+  box-shadow:none;
+}
+.modal-sale-badge:empty{ display:none; }
+
+@media(max-width:480px){
+  .promo-banner{ font-size:12px; padding:10px 16px; }
+  .sale-badge{ font-size:11px; padding:5px 10px; top:10px; }
 }
