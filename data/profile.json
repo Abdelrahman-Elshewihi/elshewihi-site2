@@ -1,0 +1,80 @@
+{
+  "_تعليمات": "الملف ده هو 'مخ' الشات بوت — أي حاجة تكتبها هنا، الشات بوت هيعرفها ويرد بيها على زوار الموقع. اكتب كل قيمة بالعربي والإنجليزي. متحطش هنا أي معلومة شخصية حساسة، لأن أي زائر للموقع ممكن يسأل الشات بوت عنها ويشوف الرد.",
+
+  "name": { "ar": "عبدالرحمن وليد الشويحي", "en": "Abdelrahman Walid Elshewihi" },
+
+  "title": {
+    "ar": "طالب هندسة حاسبات ونظم، مصمم جرافيك ومطور مواقع",
+    "en": "Computer & Systems Engineering student, Graphic Designer & Web Developer"
+  },
+
+  "bio": {
+    "ar": "طالب في كلية الهندسة (تخصص حاسبات ونظم)، بيحب البرمجة جدًا وبيحول الأفكار لتجارب رقمية متكاملة. شغله بيجمع بين البرمجة والتصميم الجرافيكي.",
+    "en": "An engineering student majoring in Computer & Systems Engineering who loves programming and turning ideas into complete digital experiences. His work blends software development with graphic design."
+  },
+
+  "availability": {
+    "ar": "متاح حاليًا لاستقبال مشاريع جديدة.",
+    "en": "Currently available for new projects."
+  },
+
+  "services": [
+    {
+      "ar": "تصميم لوجوهات وهويات بصرية كاملة",
+      "en": "Logo design & complete brand identities"
+    },
+    {
+      "ar": "تصميم كروت شخصية (Business Cards)",
+      "en": "Business card design"
+    },
+    {
+      "ar": "تطوير مواقع ويب (HTML, CSS, JavaScript, React, Next.js)",
+      "en": "Web development (HTML, CSS, JavaScript, React, Next.js)"
+    },
+    {
+      "ar": "مونتاج فيديو وموشن جرافيك ثنائي الأبعاد",
+      "en": "Video editing & 2D motion graphics"
+    },
+    {
+      "ar": "تعليق صوتي باللغة العربية",
+      "en": "Arabic voice-over"
+    },
+    {
+      "ar": "تصوير بورتريه",
+      "en": "Portrait photography"
+    }
+  ],
+
+  "tools": [
+    "Photoshop", "Illustrator", "Alight Motion", "CapCut", "VN",
+    "KineMaster Premium", "HTML", "CSS", "JavaScript", "React", "Next.js", "GSAP"
+  ],
+
+  "pricingPolicy": {
+    "ar": "الأسعار بالدولار الأمريكي (USD) وبتختلف حسب حجم المشروع وتفاصيله. الأسعار الموجودة في قسم الأعمال على الموقع هي الأسعار الفعلية الحالية (شاملة أي خصم شغال دلوقتي). للمشاريع اللي مكتوب عليها 'تواصل معنا'، السعر بيتحدد بعد معرفة تفاصيل الطلب.",
+    "en": "Prices are in US Dollars (USD) and vary based on project size and details. The prices shown in the Projects section on the site are the current actual prices (including any active discount). For projects marked 'Contact us', the price is determined after discussing the request details."
+  },
+
+  "contact": {
+    "whatsapp": "+201025857442",
+    "whatsappLink": "https://wa.me/201025857442",
+    "linkedin": "https://www.linkedin.com/in/abdelrahman-elshewihi-4a058239b"
+  },
+
+  "faq": [
+    {
+      "q": { "ar": "إزاي أطلب مشروع؟", "en": "How do I request a project?" },
+      "a": {
+        "ar": "تقدر تتواصل مباشرة عن طريق واتساب أو لينكدإن (هتلاقي الأزرار في قسم التواصل بالموقع)، وتقولي تفاصيل المشروع عشان أقدر أديك السعر والمدة بالظبط.",
+        "en": "You can reach out directly via WhatsApp or LinkedIn (buttons are in the Contact section of the site), and share your project details so an accurate price and timeline can be given."
+      }
+    },
+    {
+      "q": { "ar": "بتشتغل بأي عملة؟", "en": "What currency do you work with?" },
+      "a": {
+        "ar": "الأسعار كلها بالدولار الأمريكي (USD).",
+        "en": "All prices are in US Dollars (USD)."
+      }
+    }
+  ]
+}
