@@ -135,7 +135,7 @@ module.exports = async function handler(req, res) {
         Authorization: `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile", // موديل مجاني وسريع من Groq — راجع README لو عايز تغيّره
+        model: "openai/gpt-oss-120b", // موديل مجاني وسريع من Groq — راجع README لو عايز تغيّره
         temperature: 0.4,
         max_tokens: 350,
         messages: [
