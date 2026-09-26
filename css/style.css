@@ -1119,3 +1119,99 @@ html[data-theme="light"] .nav-cta{
   .promo-banner{ font-size:12px; padding:10px 16px; }
   .sale-badge{ font-size:11px; padding:5px 10px; top:10px; }
 }
+
+/* =====================================================
+   AI CHAT WIDGET — الشات بوت الذكي
+   زرار عايم في زاوية الشاشة، بيفتح نافذة شات صغيرة.
+   بيستخدم نفس متغيرات الألوان بتاعة الموقع (--bg, --accent...)
+   عشان يتلوّن لوحده صح مع الوضع الفاتح/الغامق من غير أي كود إضافي.
+===================================================== */
+
+/* الزرار العايم */
+.chat-fab{
+  position:fixed; bottom:24px; z-index:60;
+  inset-inline-end:24px;
+  width:58px; height:58px; border-radius:50%;
+  background:linear-gradient(135deg, var(--accent), var(--accent-3));
+  color:#fff; font-size:24px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--shadow), var(--glow);
+  cursor:pointer;
+  transition:transform .3s var(--ease);
+}
+@media (hover:hover) and (pointer:fine){ .chat-fab{ cursor:none; } }
+.chat-fab:hover{ transform:scale(1.08); }
+.chat-fab svg{ width:26px; height:26px; }
+.chat-fab .chat-fab-close{ display:none; }
+.chat-fab.open .chat-fab-chat{ display:none; }
+.chat-fab.open .chat-fab-close{ display:block; }
+
+/* نافذة الشات */
+.chat-panel{
+  position:fixed; bottom:94px; z-index:60;
+  inset-inline-end:24px;
+  width:min(370px, calc(100vw - 32px));
+  height:min(520px, calc(100vh - 140px));
+  background:var(--glass-strong);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  box-shadow:var(--shadow);
+  display:flex; flex-direction:column;
+  overflow:hidden;
+  opacity:0; visibility:hidden; transform:translateY(16px) scale(.97);
+  transition:opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+}
+.chat-panel.open{ opacity:1; visibility:visible; transform:translateY(0) scale(1); }
+
+.chat-header{
+  padding:16px 18px; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:10px;
+}
+.chat-header-title{ font-family:var(--font-ar); font-weight:700; font-size:15px; }
+.chat-header-sub{ font-size:12px; color:var(--text-faint); }
+
+.chat-body{
+  flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px;
+}
+.chat-msg{
+  max-width:85%; padding:10px 14px; border-radius:var(--r-md);
+  font-size:14.5px; line-height:1.6; word-wrap:break-word;
+}
+.chat-msg.bot{
+  align-self:flex-start;
+  background:var(--bg-3); color:var(--text);
+  border:1px solid var(--border);
+}
+.chat-msg.user{
+  align-self:flex-end;
+  background:var(--accent); color:#fff;
+}
+.chat-msg.typing{ display:flex; gap:4px; align-items:center; padding:14px; }
+.chat-msg.typing i{
+  width:6px; height:6px; border-radius:50%; background:var(--text-faint);
+  animation:chatTyping 1s infinite ease-in-out;
+}
+.chat-msg.typing i:nth-child(2){ animation-delay:.15s; }
+.chat-msg.typing i:nth-child(3){ animation-delay:.3s; }
+@keyframes chatTyping{ 0%,60%,100%{ opacity:.3; transform:translateY(0); } 30%{ opacity:1; transform:translateY(-3px); } }
+
+.chat-input-row{
+  display:flex; gap:8px; padding:12px; border-top:1px solid var(--border);
+}
+.chat-input-row input{
+  flex:1; background:var(--bg-2); border:1px solid var(--border); border-radius:var(--r-sm);
+  padding:10px 14px; color:var(--text); font-family:inherit; font-size:14px; outline:none;
+}
+.chat-input-row input:focus{ border-color:var(--accent); }
+.chat-input-row button{
+  width:40px; height:40px; border-radius:var(--r-sm);
+  background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.chat-input-row button:disabled{ opacity:.5; }
+
+@media(max-width:480px){
+  .chat-fab{ bottom:18px; inset-inline-end:18px; width:52px; height:52px; }
+  .chat-panel{ bottom:80px; inset-inline-end:16px; }
+}
