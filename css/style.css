@@ -340,8 +340,11 @@ html[lang="en"] .skill-group h4{font-family:var(--font-display); font-size:18px;
   border-radius:var(--r-xl); box-shadow:var(--shadow); transform:translateY(24px) scale(.98); transition:transform .45s var(--ease);
 }
 .modal-overlay.open .modal{transform:translateY(0) scale(1);}
-.modal-media{aspect-ratio:16/8; overflow:hidden;}
-.modal-media img{width:100%; height:100%; object-fit:cover;}
+/* عرض الصورة كاملة من غير أي كروب: العرض ثابت (100% من عرض المودال) والطول
+   بيتحدد أوتوماتيك حسب أبعاد الصورة الأصلية بتاعة كل مشروع (object-fit:contain
+   بدل cover) — يعني كل مشروع طوله يختلف عن التاني حسب شكل صورته الحقيقي */
+.modal-media{ max-height:70vh; overflow:hidden; background:var(--bg-3); display:flex; align-items:center; justify-content:center; }
+.modal-media img{ width:100%; height:auto; max-height:70vh; object-fit:contain; display:block; }
 .modal-body{padding:36px;}
 @media(max-width:640px){ .modal-body{padding:24px;} }
 .modal-close{
@@ -469,7 +472,7 @@ a:focus-visible, button:focus-visible, textarea:focus-visible{
   .proj-value{opacity:1; transform:none; top:12px; inset-inline-end:12px; padding:6px 10px; font-size:9px;}
   .modal-overlay{padding:12px;}
   .modal{max-height:92vh; border-radius:22px;}
-  .modal-media{aspect-ratio:16/9;}
+  .modal-media{ max-height:50vh; }
   .modal-body{padding:22px;}
   .modal-body .proj-title{--project-title-size:24px !important;}
   .contact-panel{padding:58px 22px;}
@@ -922,8 +925,8 @@ html[data-theme="light"] .nav-cta{
 /* المودال: صورة الغلاف أو الفيديو */
 .modal-media{ position:relative; }
 .modal-media #modalImg.hidden{ display:none; }
-/* لما الفيديو شغال، بنلغي نسبة العرض الثابتة بتاعة modal-media، ونسيب الفيديو نفسه يتحكم في ارتفاعه */
-.modal-media:has(.modal-video-wrap.active){ aspect-ratio:auto; }
+/* لما الفيديو شغال، نسيب الفيديو نفسه يتحكم في ارتفاعه بالكامل من غير حد أقصى للطول */
+.modal-media:has(.modal-video-wrap.active){ max-height:none; }
 
 .modal-video-wrap{
   display:none;
