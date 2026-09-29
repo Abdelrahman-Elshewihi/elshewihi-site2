@@ -121,9 +121,9 @@
         "en": "I designed and built a simple, fast site for uploading shelf photos and keeping them in one organized reference. Even at home or off shift, the pharmacist can open the photo, pinpoint an item's exact place, and answer colleagues instantly — no ladder, no hassle."
       },
       "tech": ["Web App", "Image Upload", "Vercel"],
-      "priceText": {
-        "ar": "مشروع شخصي — متاح للتجربة",
-        "en": "Personal project — open to try"
+      "price": {
+        "value": "10",
+        "currency": "USD"
       }
     }
   ]
