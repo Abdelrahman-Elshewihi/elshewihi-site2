@@ -935,41 +935,25 @@ html[data-theme="light"] .nav-cta{
   aspect-ratio:16/9;
   background:#000;
   overflow:hidden;
-  align-items:center;
-  justify-content:center;
 }
-.modal-video-wrap.active{ display:flex; }
+.modal-video-wrap.active{ display:block; }
 
-/* الخلفية المموّهة: نسخة مكبّرة من صورة غلاف الفيديو، مموّهة ومعتّمة، بتملي الفراغ حوالين الفيديو */
-.video-backdrop{
-  position:absolute; inset:-24px;
-  background-size:cover; background-position:center;
-  filter:blur(44px) brightness(.45) saturate(1.35);
-  transform:scale(1.15);
-  z-index:1;
-}
+/* الفيديو الطولي (Shorts/Reels): بياخد عرض المودال بالكامل برضه، بس بنسبة طول لعرض 9:16
+   بدل 16:9 — يعني هيبان أطول من الفيديو العادي، وده طبيعي ومقصود عشان يفضل بحجمه الحقيقي */
+.modal-video-wrap.vertical{ aspect-ratio:9/16; }
 
-/* المسرح: الصندوق اللي بيحتوي الفيديو الفعلي بأبعاده الحقيقية، فوق الخلفية المموّهة */
+/* المسرح: بياخد كل مساحة الـ wrap بالظبط (الفيديو نفسه بيملا العرض والطول كاملين) */
 .video-stage{
-  position:relative; z-index:2;
+  position:absolute; inset:0;
   width:100%; height:100%;
 }
 .video-stage iframe{
   position:absolute; inset:0; width:100%; height:100%; border:0;
 }
 
-/* فيديو عمودي (Shorts): مسرح مربّع بدل عريض، والفيديو نفسه طولي 9:16 عائم في النص بحدود وظل واضحين */
-.modal-video-wrap.vertical{ aspect-ratio:1/1; max-height:70vh; }
-.modal-video-wrap.vertical .video-stage{
-  width:auto; height:100%; aspect-ratio:9/16;
-  border-radius:16px; overflow:hidden;
-  box-shadow:0 20px 50px -12px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.08);
-  animation:videoGlow 3.5s ease-in-out infinite;
-}
-@keyframes videoGlow{
-  0%,100%{ box-shadow:0 20px 50px -12px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.08), 0 0 30px 2px rgba(34,224,224,.14); }
-  50%{ box-shadow:0 20px 50px -12px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.08), 0 0 46px 6px rgba(34,224,224,.28); }
-}
+/* مش محتاجين الخلفية المموّهة القديمة دلوقتي بعد ما بقى الفيديو بياخد المساحة كاملة،
+   لكن سبنا الـ div في الـ HTML عشان ميبوظش كود main.js — بس مخفي تمامًا */
+.video-backdrop{ display:none; }
 
 /* رابط احتياطي: بيظهر بس لما فيه فيديو، تحت الفيديو مباشرة، لو التضمين رفض يشتغل */
 .modal-video-fallback{
@@ -981,6 +965,16 @@ html[data-theme="light"] .nav-cta{
 }
 .modal-video-fallback.active{ display:block; }
 .modal-video-fallback:hover{ color:var(--text); }
+
+/* مشغّل الصوت الخاص بمشاريع التعليق الصوتي */
+.modal-audio-wrap{
+  display:none;
+  padding:16px 20px;
+  background:var(--bg-3);
+  border-bottom:1px solid var(--border);
+}
+.modal-audio-wrap.active{ display:block; }
+.modal-audio-wrap audio{ width:100%; height:40px; }
 
 /* =====================================================
    إعادة تنظيم قسم المهارات — 4 مجموعات واضحة (تصميم / ويب / برمجة / أدوات)
