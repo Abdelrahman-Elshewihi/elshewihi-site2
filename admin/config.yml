@@ -37,6 +37,7 @@ collections:
           - { label: "صورة المشروع (اختياري لو فيه فيديو — هتتاخد صورة يوتيوب تلقائي)", name: "image", widget: "image", required: false }
           - { label: "كود فيديو يوتيوب (بس الكود، مش اللينك كامل)", name: "video", widget: "string", required: false }
           - { label: "الفيديو عمودي (Shorts)؟", name: "videoVertical", widget: "boolean", default: false, required: false }
+          - { label: "رابط المشروع الحي (اختياري)", name: "link", widget: "string", required: false }
           - label: "ملف تسجيل صوتي (لمشاريع التعليق الصوتي — mp3)"
             name: "audio"
             widget: "file"
