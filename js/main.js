@@ -10,6 +10,8 @@
      "image": "images/xxx.jpg"       -> اختياري لو فيه "video"
      "video": "كود يوتيوب فقط"        -> اختياري، لو موجود بيشغل فيديو بدل الصورة
      "videoVertical": true/false     -> true لو الفيديو Shorts (عمودي)
+     "audio": "audio/xxx.mp3"        -> اختياري، لمشاريع التعليق الصوتي — بيظهر مشغّل صوت
+                                         تحت صورة الغلاف (يقدر يتحط مع "image" في نفس الوقت)
      "tags": ["logo","card","website","video","app","voice"]  -> يحدد تحت أي فلتر يظهر
      "category": {"ar":"..","en":".."},
      "title":    {"ar":"..","en":".."},
@@ -175,7 +177,8 @@ function renderProjects(){
       media.appendChild(saleBadge);
     }
 
-    if(project.video){
+    // أيقونة تشغيل فوق غلاف أي مشروع فيه فيديو أو تسجيل صوتي (تدل على إن فيه ميديا تتشغل)
+    if(project.video || project.audio){
       const playIcon = document.createElement("div");
       playIcon.className = "proj-play";
       playIcon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="rgba(5,7,12,.55)" stroke="rgba(255,255,255,.5)"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="#fff"/></svg>`;
@@ -297,6 +300,20 @@ function openModal(p){
     modalImg.src = p.image || (p.video ? `https://img.youtube.com/vi/${p.video}/hqdefault.jpg` : "");
     modalImg.alt = getLocalized(p.title);
   }
+
+  // مشغّل الصوت: مستقل تمامًا عن منطق الصورة/الفيديو فوق — المشروع ممكن يكون عنده
+  // صورة غلاف عادية + تسجيل صوتي تحتها، فمفيش أي تعارض بين الاتنين
+  const audioWrap = document.getElementById("modalAudioWrap");
+  const audioEl = document.getElementById("modalAudio");
+  if(p.audio){
+    // p.audio = مسار ملف الصوت (مثلاً "audio/voice-project1.mp3")
+    audioEl.src = p.audio;
+    audioWrap.classList.add("active");
+  }else{
+    audioEl.pause();
+    audioEl.src = "";
+    audioWrap.classList.remove("active");
+  }
   document.getElementById("modalCat").textContent = getLocalized(p.category);
   document.getElementById("modalTitle").textContent = getLocalized(p.title);
   document.getElementById("modalDesc").textContent = getLocalized(p.desc);
@@ -336,6 +353,10 @@ function closeModal(){
   const overlay = document.getElementById("modalOverlay");
   document.getElementById("modalVideoFrame").src = "";
   document.getElementById("modalVideoBackdrop").style.backgroundImage = "";
+  // بنوقف تشغيل الصوت لو كان شغال لما المستخدم يقفل النافذة
+  const audioEl = document.getElementById("modalAudio");
+  audioEl.pause();
+  audioEl.src = "";
   overlay.classList.remove("open");
   overlay.setAttribute("aria-hidden","true");
   document.body.style.overflow = "";
