@@ -10,6 +10,7 @@
      "image": "images/xxx.jpg"       -> اختياري لو فيه "video"
      "video": "كود يوتيوب فقط"        -> اختياري، لو موجود بيشغل فيديو بدل الصورة
      "videoVertical": true/false     -> true لو الفيديو Shorts (عمودي)
+     "link": "https://example.com"   -> اختياري، رابط المشروع الحي (بيظهر زرار زيارة الموقع)
      "audio": "audio/xxx.mp3"        -> اختياري، لمشاريع التعليق الصوتي — بيظهر مشغّل صوت
                                          تحت صورة الغلاف (يقدر يتحط مع "image" في نفس الوقت)
      "tags": ["logo","card","website","video","app","voice"]  -> يحدد تحت أي فلتر يظهر
@@ -80,7 +81,7 @@ const I18N = {
     projValue:"القيمة التقديرية", viewLabel:"عرض", openLabel:"فتح",
     contactEyebrow:"لنبدأ مشروعك", whatsappBtn:"واتساب", linkedinBtn:"LinkedIn",
     footNote:"صُمم وبُني يدويًا — 2026. أول مشروع في الـPortfolio هو الـPortfolio نفسه.",
-    modalProblem:"المشكلة", modalDid:"اللي عملته", modalValue:"القيمة التقديرية", watchOnYoutube:"شاهد الفيديو على يوتيوب ↗"
+    modalProblem:"المشكلة", modalDid:"اللي عملته", modalValue:"القيمة التقديرية", watchOnYoutube:"شاهد الفيديو على يوتيوب ↗", visitSite:"زيارة الموقع ↗"
   },
   en:{
     skip:"Skip to content", introSkip:"Tap anywhere to continue",
@@ -103,7 +104,7 @@ const I18N = {
     projValue:"Est. value", viewLabel:"VIEW", openLabel:"OPEN",
     contactEyebrow:"Start your project", whatsappBtn:"WhatsApp", linkedinBtn:"LinkedIn",
     footNote:"Designed & built by hand — 2026. This portfolio is itself project #1.",
-    modalProblem:"The problem", modalDid:"What I did", modalValue:"Est. value", watchOnYoutube:"Watch on YouTube ↗"
+    modalProblem:"The problem", modalDid:"What I did", modalValue:"Est. value", watchOnYoutube:"Watch on YouTube ↗", visitSite:"Visit the website ↗"
   }
 };
 let LANG = "ar";
@@ -314,6 +315,10 @@ function openModal(p){
     audioEl.src = "";
     audioWrap.classList.remove("active");
   }
+  // p.link = رابط المشروع الحي (اختياري) — لو موجود بيظهر زرار "زيارة الموقع" في نافذة التفاصيل
+  const visit = document.getElementById("modalVisit");
+  if(p.link){ visit.href = p.link; visit.classList.add("active"); }
+  else{ visit.removeAttribute("href"); visit.classList.remove("active"); }
   document.getElementById("modalCat").textContent = getLocalized(p.category);
   document.getElementById("modalTitle").textContent = getLocalized(p.title);
   document.getElementById("modalDesc").textContent = getLocalized(p.desc);
