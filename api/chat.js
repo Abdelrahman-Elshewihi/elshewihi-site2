@@ -55,7 +55,7 @@ function describeProject(project) {
       ? `السعر بعد الخصم ${discount.discounted} ${discount.currency} (السعر الأصلي ${discount.original} ${discount.currency})`
       : `${project.price?.value} ${project.price?.currency}`;
   }
-  return `- ${title}: ${desc} | السعر: ${priceLine}`;
+  return `- ${title}: ${desc} | السعر: ${priceLine}${project.link ? ` | الرابط: ${project.link}` : ""}`;
 }
 
 // بيبني "ملف التعريف" الكامل اللي بيتبعت للموديل قبل كل سؤال
