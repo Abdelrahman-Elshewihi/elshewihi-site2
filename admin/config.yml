@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Abdelrahman-Elshewihi/elshewihi-site2
   branch: main
+  base_url: https://el-shewihi-eng.vercel.app
+  auth_endpoint: api/auth
 
 media_folder: "images"
 public_folder: "images"
@@ -34,6 +37,12 @@ collections:
           - { label: "صورة المشروع (اختياري لو فيه فيديو — هتتاخد صورة يوتيوب تلقائي)", name: "image", widget: "image", required: false }
           - { label: "كود فيديو يوتيوب (بس الكود، مش اللينك كامل)", name: "video", widget: "string", required: false }
           - { label: "الفيديو عمودي (Shorts)؟", name: "videoVertical", widget: "boolean", default: false, required: false }
+          - label: "ملف تسجيل صوتي (لمشاريع التعليق الصوتي — mp3)"
+            name: "audio"
+            widget: "file"
+            media_folder: "audio"
+            public_folder: "audio"
+            required: false
           - label: "التصنيف"
             name: "category"
             widget: "object"
