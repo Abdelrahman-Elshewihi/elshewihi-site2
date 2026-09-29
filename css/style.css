@@ -1212,3 +1212,8 @@ html[data-theme="light"] .nav-cta{
   .chat-fab{ bottom:18px; inset-inline-end:18px; width:52px; height:52px; }
   .chat-panel{ bottom:80px; inset-inline-end:16px; }
 }
+
+/* زرار زيارة الموقع في نافذة تفاصيل المشروع */
+.modal-visit{ display:none; align-self:flex-start; margin-top:18px; padding:11px 22px; border-radius:999px; border:1px solid var(--accent, #2ec4b6); color:var(--text); text-decoration:none; font-weight:600; transition:background .2s, transform .2s; }
+.modal-visit.active{ display:inline-block; }
+.modal-visit:hover{ background:rgba(46,196,182,.14); transform:translateY(-1px); }
