@@ -1217,3 +1217,46 @@ html[data-theme="light"] .nav-cta{
 .modal-visit{ display:none; align-self:flex-start; margin-top:18px; padding:11px 22px; border-radius:999px; border:1px solid var(--accent, #2ec4b6); color:var(--text); text-decoration:none; font-weight:600; transition:background .2s, transform .2s; }
 .modal-visit.active{ display:inline-block; }
 .modal-visit:hover{ background:rgba(46,196,182,.14); transform:translateY(-1px); }
+
+/* =====================================================
+   زرار "تواصل واتساب" (الهيرو): لون ثابت + شريط ضوئي بيلف على الحافة
+   - الخلفية Solid من غير تدرج ولا إضاءة داخلية
+   - الشريط بيتحرك بـ conic-gradient بزاوية متحركة (@property) بدل ما نلف العنصر،
+     عشان يمشي على حافة الزرار نفسها من غير ما يطلع خط مائل جوّه الزرار
+   ===================================================== */
+@property --beam-angle{ syntax:"<angle>"; inherits:false; initial-value:0deg; }
+
+.btn-ghost{
+  --beam-w:2px;
+  position:relative; isolation:isolate; overflow:visible;
+  background:#0a0f1a;                              /* لون ثابت، غيّره هنا لو عاوز لون تاني */
+  color:var(--text) !important;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:none; backdrop-filter:none;
+}
+html[data-theme="light"] .btn-ghost{ background:#111827; color:#f3f5f9 !important; border-color:rgba(17,24,39,.9); }
+
+.btn-ghost::after{ content:none; display:none; animation:none; }
+
+.btn-ghost::before{
+  content:""; position:absolute; inset:-1px; z-index:-1; pointer-events:none;
+  border-radius:inherit; padding:var(--beam-w);
+  background:conic-gradient(from var(--beam-angle),
+    transparent 0deg, transparent 250deg,
+    rgba(34,224,224,.25) 290deg,
+    var(--accent-2) 335deg,
+    #fff 356deg,
+    transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  filter:drop-shadow(0 0 4px rgba(34,224,224,.55));
+  animation:beamOrbit 4s linear infinite;
+}
+@keyframes beamOrbit{ to{ --beam-angle:360deg; } }
+
+.btn-ghost:hover{ background:#0d1422; border-color:rgba(255,255,255,.16); box-shadow:none; }
+html[data-theme="light"] .btn-ghost:hover{ background:#0b1220; }
+
+@media (prefers-reduced-motion:reduce){
+  .btn-ghost::before{ animation:none; --beam-angle:300deg; }
+}
