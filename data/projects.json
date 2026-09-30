@@ -122,7 +122,7 @@
       },
       "tech": ["Web App", "Image Upload", "Vercel"],
       "price": {
-        "value": "10",
+        "value": "12.5",
         "currency": "USD"
       }
     }
