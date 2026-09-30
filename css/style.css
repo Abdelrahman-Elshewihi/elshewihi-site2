@@ -1260,3 +1260,6 @@ html[data-theme="light"] .btn-ghost:hover{ background:#0b1220; }
 @media (prefers-reduced-motion:reduce){
   .btn-ghost::before{ animation:none; --beam-angle:300deg; }
 }
+
+/* سطر تعريفي صغير في الفوتر (محتوى حقيقي مقروء لمحركات البحث والزوار) */
+footer .foot-seo{max-width:720px; margin:22px auto 0; font-size:12px; line-height:1.9; color:var(--text-faint);}
