@@ -4,7 +4,10 @@
       "id": "ammar-doors",
       "featured": true,
       "image": "images/project1.jpg",
-      "tags": ["logo", "card"],
+      "tags": [
+        "logo",
+        "card"
+      ],
       "category": {
         "ar": "هوية بصرية",
         "en": "Brand Identity"
@@ -25,7 +28,11 @@
         "ar": "صممت لوجو احترافي وفاخر يعبر عن طبيعة المهنة بدقة، وجهزت كارت شخصي متكامل يحمل بيانات التواصل، ودمجت فيه QR Code بيوصل العميل لصفحة الفيسبوك الرسمية للشركة بضغطة واحدة — عشان الكارت يشتغل كأداة تسويقية فعلية في أرض الواقع.",
         "en": "I designed a professional, luxury logo that accurately reflects the nature of the business, and built a complete business card carrying his contact details with an embedded QR code linking directly to the company's official Facebook page — turning the card into a real offline marketing tool."
       },
-      "tech": ["Illustrator", "Photoshop", "Brand Identity"],
+      "tech": [
+        "Illustrator",
+        "Photoshop",
+        "Brand Identity"
+      ],
       "price": {
         "value": "100",
         "currency": "USD"
@@ -35,7 +42,9 @@
       "id": "elite-nexus",
       "featured": false,
       "image": "images/project2.jpg",
-      "tags": ["logo"],
+      "tags": [
+        "logo"
+      ],
       "category": {
         "ar": "تصميم لوجو",
         "en": "Logo Design"
@@ -56,7 +65,11 @@
         "ar": "استلهمت اسم الفريق نفسه من الفكرة اللي كانت وراء نجاح المشروع، وبنيت عليه تصميم نسر فخم بتفاصيل معدنية دقيقة، وبرزت شكل القلب في تكوين الشعار عشان يعكس الترابط القوي اللي جمع الفريق.",
         "en": "I drew the team's name itself from the idea behind the project's success, and built on it a majestic eagle design with fine metallic detailing, highlighting a heart shape within the composition to reflect the strong bond that united the team."
       },
-      "tech": ["Illustrator", "Photoshop", "3D Render"],
+      "tech": [
+        "Illustrator",
+        "Photoshop",
+        "3D Render"
+      ],
       "price": {
         "value": "50",
         "currency": "USD"
@@ -67,7 +80,9 @@
       "featured": false,
       "video": "SEZyahqN5nk",
       "videoVertical": true,
-      "tags": ["video"],
+      "tags": [
+        "video"
+      ],
       "category": {
         "ar": "مونتاج فيديو",
         "en": "Video Editing"
@@ -88,7 +103,9 @@
         "ar": "صممت كل الحركة والانتقالات جرافيكياً باستخدام Alight Motion، مع التركيز على وضوح النص وسهولة القراءة.",
         "en": "Designed all the motion and transitions graphically using Alight Motion, focusing on text clarity and readability."
       },
-      "tech": ["Alight Motion"],
+      "tech": [
+        "Alight Motion"
+      ],
       "priceText": {
         "ar": "تواصل معنا لمعرفة تفاصيل الباقات",
         "en": "Contact us for package details"
@@ -99,7 +116,10 @@
       "featured": false,
       "image": "images/project3.jpg",
       "link": "https://pharmshelve.vercel.app",
-      "tags": ["website", "app"],
+      "tags": [
+        "website",
+        "app"
+      ],
       "category": {
         "ar": "تطبيق ويب",
         "en": "Web App"
@@ -120,10 +140,52 @@
         "ar": "صمّمتُ وطوّرتُ موقعًا بسيطًا وسريع الاستخدام يتيح رفع صور الأرفف وحفظها في مرجع واحد منظّم. وبذلك يستطيع الصيدلي، وهو في منزله أو خارج دوامه، أن يفتح الصورة ويحدد مكان الصنف بدقة ويردّ على زملائه فورًا — دون سلّم ودون عناء.",
         "en": "I designed and built a simple, fast site for uploading shelf photos and keeping them in one organized reference. Even at home or off shift, the pharmacist can open the photo, pinpoint an item's exact place, and answer colleagues instantly — no ladder, no hassle."
       },
-      "tech": ["Web App", "Image Upload", "Vercel"],
+      "tech": [
+        "Web App",
+        "Image Upload",
+        "Vercel"
+      ],
       "price": {
         "value": "12.5",
         "currency": "USD"
+      }
+    },
+    {
+      "id": "dr-samah-pharmacy",
+      "featured": false,
+      "image": "images/project4.jpg",
+      "link": "https://dr-samah-basem-pharmacy.vercel.app/",
+      "tags": [
+        "website"
+      ],
+      "category": {
+        "ar": "موقع ويب",
+        "en": "Website"
+      },
+      "title": {
+        "ar": "صيدلية د. سماح باسم — صيدلية أونلاين بالأرفف",
+        "en": "Dr. Samah Basem Pharmacy — An Online Pharmacy with Virtual Shelves"
+      },
+      "desc": {
+        "ar": "موقع صيدلية في دمياط الجديدة: تتجوّل بين الأرفف، تضيف أصنافك في العربية، وتطلب عبر واتساب.",
+        "en": "A pharmacy website for New Damietta: walk through the shelves, add items to your cart, and order via WhatsApp."
+      },
+      "problem": {
+        "ar": "الصيدلية كانت محتاجة طريقة بسيطة تخلّي الزبون يختار أصنافه ويطلبها من بيته، من غير مكالمات كتير أو رسائل مبعثرة، مع توضيح مناطق التوصيل ومواعيد العمل.",
+        "en": "The pharmacy needed a simple way for customers to pick their items and order from home, without scattered calls and messages, while making delivery areas and working hours clear."
+      },
+      "did": {
+        "ar": "صمّمت وطوّرت موقعًا بتدخل فيه الصيدلية وتتجوّل بين الأرفف (رجالي، نسائي، مستحضرات، أدوية)، وتضيف اللي محتاجه في عربية التسوق، وتختار منطقة التوصيل، وبضغطة واحدة يتفتح شات واتساب فيه كل الطلب جاهز للإرسال.",
+        "en": "I designed and built a site where you walk into the pharmacy and browse shelves (men's, women's, cosmetics, medicines), add what you need to a shopping cart, choose your delivery area, and with one tap a WhatsApp chat opens with the full order ready to send."
+      },
+      "tech": [
+        "Web Development",
+        "WhatsApp Ordering",
+        "Vercel"
+      ],
+      "priceText": {
+        "ar": "تواصل معنا لمعرفة التفاصيل",
+        "en": "Contact us for details"
       }
     }
   ]
