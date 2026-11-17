@@ -39,7 +39,7 @@ let CURRENT_FILTER = "all"; // "all" أو أي كلمة من الـ tags (logo/c
    المشاريع اللي سعرها نصي (زي "تواصل معنا") مش بتتأثر بالعرض.
 ===================================================== */
 const PROMO = {
-  active: false,
+  active: true,
   percent: 60,
   label: {
     ar: "🎒 خصم %60 بمناسبة العودة المدرسية — لفترة محدودة",
@@ -667,3 +667,22 @@ fetch("data/projects.json", { cache: "no-cache" })
   .catch(error => {
     console.error("Could not load projects:", error);
   });
+
+// ===== Liquid Glass: عدسة زجاجية بتتحرك تحت لينكات النافبار =====
+(function(){
+  const wrap = document.querySelector(".nav-links");
+  if(!wrap) return;
+  const lens = document.createElement("span");
+  lens.className = "nav-lens";
+  wrap.prepend(lens);
+  const move = a => {
+    lens.style.left = a.offsetLeft + "px";
+    lens.style.width = a.offsetWidth + "px";
+    lens.style.opacity = "1";
+  };
+  wrap.querySelectorAll("a").forEach(a=>{
+    a.addEventListener("mouseenter", ()=>move(a));
+    a.addEventListener("focus", ()=>move(a));
+  });
+  wrap.addEventListener("mouseleave", ()=>{ lens.style.opacity = "0"; });
+})();
