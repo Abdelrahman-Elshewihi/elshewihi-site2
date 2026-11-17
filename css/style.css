@@ -1263,3 +1263,198 @@ html[data-theme="light"] .btn-ghost:hover{ background:#0b1220; }
 
 /* سطر تعريفي صغير في الفوتر (محتوى حقيقي مقروء لمحركات البحث والزوار) */
 footer .foot-seo{max-width:720px; margin:22px auto 0; font-size:12px; line-height:1.9; color:var(--text-faint);}
+
+/* =====================================================================
+   LIQUID GLASS — واجهة زجاجية سائلة على طريقة Apple
+   ===================================================================== */
+:root{
+  --lg-fill:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04) 55%,rgba(255,255,255,.09));
+  --lg-fill-strong:linear-gradient(135deg,rgba(255,255,255,.20),rgba(255,255,255,.06) 55%,rgba(255,255,255,.12));
+  --lg-blur:blur(24px) saturate(180%);
+  --lg-rim:linear-gradient(135deg,rgba(255,255,255,.65),rgba(255,255,255,.08) 28%,rgba(255,255,255,.05) 68%,rgba(255,255,255,.4));
+  --lg-shadow:inset 0 1px 1px rgba(255,255,255,.35),inset 0 -1px 1px rgba(255,255,255,.08),inset 0 0 30px rgba(255,255,255,.035),0 18px 44px -16px rgba(0,0,0,.45);
+  --lg-spring:cubic-bezier(.34,1.56,.64,1);
+}
+html[data-theme="light"]{
+  --lg-fill:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.38) 55%,rgba(255,255,255,.6));
+  --lg-fill-strong:linear-gradient(135deg,rgba(255,255,255,.85),rgba(255,255,255,.55) 55%,rgba(255,255,255,.75));
+  --lg-rim:linear-gradient(135deg,rgba(255,255,255,1),rgba(255,255,255,.2) 30%,rgba(60,90,160,.10) 70%,rgba(255,255,255,.9));
+  --lg-shadow:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -1px 1px rgba(60,90,160,.08),0 18px 44px -18px rgba(40,60,110,.28);
+}
+
+/* خلفية سائلة: بقع ألوان بتتحرك ببطء ورا الزجاج عشان ينكسر عليها الضوء */
+.bg-layer::before,.bg-layer::after{content:"";position:absolute;pointer-events:none;filter:blur(60px);opacity:.55;will-change:transform,border-radius;}
+.bg-layer::before{width:62vmax;height:62vmax;top:-18vmax;right:-14vmax;background:radial-gradient(circle at 35% 35%,#7c5cff,#2f6bff 45%,transparent 70%);animation:lgBlobA 22s ease-in-out infinite;}
+.bg-layer::after{width:54vmax;height:54vmax;bottom:-20vmax;left:-12vmax;background:radial-gradient(circle at 60% 40%,#22e0e0,#3fa9ff 50%,transparent 72%);animation:lgBlobB 28s ease-in-out infinite;}
+html[data-theme="light"] .bg-layer::before,html[data-theme="light"] .bg-layer::after{opacity:.35;}
+@keyframes lgBlobA{0%,100%{border-radius:42% 58% 63% 37%/45% 40% 60% 55%;transform:translate(0,0) rotate(0)}50%{border-radius:60% 40% 38% 62%/55% 62% 38% 45%;transform:translate(-6vw,8vh) rotate(25deg)}}
+@keyframes lgBlobB{0%,100%{border-radius:55% 45% 40% 60%/50% 60% 40% 50%;transform:translate(0,0) rotate(0)}50%{border-radius:38% 62% 56% 44%/62% 40% 60% 38%;transform:translate(7vw,-7vh) rotate(-22deg)}}
+
+/* السطوح الزجاجية */
+.navbar,.bento-card,.chip,.proj-card,.contact-panel,.avatar-tag,.nav-btn,.modal-meta span,.chat-panel,.modal-price{
+  background:var(--lg-fill);
+  -webkit-backdrop-filter:var(--lg-blur); backdrop-filter:var(--lg-blur);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:var(--lg-shadow);
+}
+html[data-theme="light"] .navbar,html[data-theme="light"] .bento-card,html[data-theme="light"] .chip,html[data-theme="light"] .proj-card,
+html[data-theme="light"] .contact-panel,html[data-theme="light"] .avatar-tag,html[data-theme="light"] .nav-btn,html[data-theme="light"] .chat-panel{border-color:rgba(255,255,255,.7);}
+
+/* حواف مضيئة متدرجة (Rim light) زي زجاج Apple */
+.navbar::after,.bento-card::after,.proj-card::after,.contact-panel::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; padding:1px; pointer-events:none; z-index:3;
+  background:var(--lg-rim);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+}
+/* انعكاس ضوء قوسي في الركن العلوي (زي شريط التنقل في الصورة) */
+.navbar::before{
+  content:""; position:absolute; top:3px; inset-inline-end:14%; width:30%; height:42%; border-radius:50%;
+  background:radial-gradient(ellipse at 50% 30%,rgba(255,255,255,.38),transparent 70%); filter:blur(2px); pointer-events:none; opacity:.8;
+}
+.navbar{border-radius:9999px; overflow:visible;}
+
+/* عدسة زجاجية بتتحرك تحت اللينك (بتتظبط بالـJS) */
+.nav-links{position:relative;}
+.nav-lens{
+  position:absolute; top:50%; height:34px; margin-top:-17px; border-radius:9999px; pointer-events:none; opacity:0; z-index:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.08));
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.5),0 6px 16px -6px rgba(0,0,0,.35);
+  transition:left .45s var(--lg-spring),width .45s var(--lg-spring),opacity .25s;
+}
+.nav-links a{position:relative; z-index:1;}
+.nav-links a:hover,.nav-links a.active{background:transparent;}
+
+/* بطاقات: لمعة بتتبع الماوس + حركة زنبركية */
+.bento-card{transition:transform .5s var(--lg-spring),border-color .4s,box-shadow .4s;}
+.bento-card:hover{transform:translateY(-6px) scale(1.012);}
+.bento-card::before{background:radial-gradient(280px circle at var(--mx) var(--my),rgba(255,255,255,.16),transparent 70%);}
+.chip{background:var(--lg-fill);transition:transform .4s var(--lg-spring),box-shadow .3s,border-color .3s;}
+.chip:hover{transform:translateY(-4px) scale(1.04);}
+.proj-card{background:var(--lg-fill-strong);}
+.proj-card .glare{background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.22),transparent 55%);}
+.contact-panel{background:var(--lg-fill-strong);}
+
+/* أزرار */
+.btn-primary{
+  box-shadow:inset 0 1.5px 1px rgba(255,255,255,.65),inset 0 -2px 6px rgba(0,60,120,.25),0 10px 28px -10px rgba(63,169,255,.6);
+  transition:transform .4s var(--lg-spring),box-shadow .35s;
+}
+.btn-primary:hover{transform:translateY(-3px) scale(1.04);}
+.btn-primary:active,.btn-ghost:active,.nav-cta:active,.contact-btn:active{transform:scale(.95);}
+.nav-cta{
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.75)); color:#0a0f1a;
+  box-shadow:inset 0 1px 1px #fff,0 6px 18px -6px rgba(0,0,0,.4); transition:transform .4s var(--lg-spring),background .3s;
+}
+.nav-cta:hover{transform:scale(1.06); background:#fff;}
+.nav-btn:hover{transform:scale(1.12); transition:transform .4s var(--lg-spring);}
+.linkedin-btn{background:var(--lg-fill-strong);-webkit-backdrop-filter:var(--lg-blur);backdrop-filter:var(--lg-blur);box-shadow:var(--lg-shadow);}
+
+/* المودال: الـoverlay بيعمل البلور، والنافذة زجاج كثيف */
+.modal-overlay{background:rgba(6,10,24,.45);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);}
+.modal{background:linear-gradient(135deg,rgba(24,34,58,.86),rgba(14,20,36,.82));border:1px solid rgba(255,255,255,.2);box-shadow:var(--lg-shadow),0 40px 90px -30px rgba(0,0,0,.7);-webkit-backdrop-filter:none;backdrop-filter:none;}
+html[data-theme="light"] .modal{background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(240,244,252,.88));}
+.modal-close{background:rgba(255,255,255,.14);border-radius:50%;box-shadow:inset 0 1px 1px rgba(255,255,255,.4);transition:transform .4s var(--lg-spring);}
+.modal-close:hover{transform:scale(1.12) rotate(90deg);}
+.modal-visit{-webkit-backdrop-filter:var(--lg-blur);backdrop-filter:var(--lg-blur);background:var(--lg-fill);box-shadow:var(--lg-shadow);}
+
+/* الشات */
+.chat-panel{background:var(--lg-fill-strong);border-radius:28px;}
+.chat-msg.bot{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.16);box-shadow:inset 0 1px 1px rgba(255,255,255,.25);}
+.chat-msg.user{background:linear-gradient(180deg,#5db4ff,#2f7dff);box-shadow:inset 0 1px 1px rgba(255,255,255,.5);}
+.chat-fab{box-shadow:inset 0 1.5px 1px rgba(255,255,255,.55),0 14px 34px -10px rgba(63,169,255,.65);transition:transform .45s var(--lg-spring);}
+
+/* موبايل: بلور أخف عشان الأداء */
+@media(max-width:700px){
+  :root{--lg-blur:blur(16px) saturate(170%);}
+  .bg-layer::before,.bg-layer::after{filter:blur(44px);}
+}
+/* لو المتصفح مش بيدعم backdrop-filter */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .navbar,.bento-card,.chip,.proj-card,.contact-panel,.chat-panel{background:var(--bg-2);}
+}
+@media(prefers-reduced-motion:reduce){
+  .bg-layer::before,.bg-layer::after{animation:none;}
+  .nav-lens{transition:none;}
+}
+
+/* =====================================================
+   عرض الفيديو المريح على كل الشاشات (موبايل / تابلت / لاب / بي سي)
+   الفكرة: الفيديو الطولي (Shorts) ماينفعش ياخد عرض المودال كله لأنه كده بيطلع
+   أطول من الشاشة. فبنحدد ارتفاعه بنسبة من ارتفاع الشاشة نفسها (dvh)،
+   ويتوسّط في نص المودال بنسبته الحقيقية 9:16 من غير أي قص،
+   والفراغ على الجنبين بيتملى بنسخة مموّهة من غلاف الفيديو.
+   وعلى الشاشات العريضة (لاب/بي سي/موبايل أفقي) الفيديو بيقعد على جنب
+   والتفاصيل جنبه بتتسكرول لوحدها.
+===================================================== */
+:root{ --vid-cap:74vh; }
+@supports (height:1dvh){ :root{ --vid-cap:74dvh; } }
+@media (min-width:600px) and (orientation:portrait){
+  :root{ --vid-cap:62vh; }
+  @supports (height:1dvh){ :root{ --vid-cap:62dvh; } }
+}
+
+.modal-media:has(.modal-video-wrap.active){
+  background:#05070c;
+  display:block; /* الأصل flex بالعرض، وده كان بيحط رابط يوتيوب جنب الفيديو بدل تحته */
+}
+
+/* فيديو طولي: ارتفاعه محسوب من الشاشة، والمسرح متوسّط بنسبة 9:16 */
+.modal-video-wrap.vertical{
+  aspect-ratio:auto;
+  width:100%;
+  height:min(var(--vid-cap), calc(min(880px, 100vw - 24px) * 16 / 9));
+}
+.modal-video-wrap.vertical .video-stage{
+  top:0; bottom:0; left:50%; right:auto;
+  transform:translateX(-50%);
+  height:100%; width:auto; aspect-ratio:9/16; max-width:100%;
+  z-index:1;
+}
+.modal-video-wrap.vertical .video-backdrop{
+  display:block; position:absolute; inset:-40px; z-index:0;
+  background-size:cover; background-position:center;
+  filter:blur(26px) brightness(.5) saturate(1.25);
+}
+
+/* فيديو عريض: يفضل 16:9 كامل، بس مايعديش ارتفاع الشاشة */
+.modal-video-wrap.horizontal{
+  width:min(100%, calc(var(--vid-cap) * 16 / 9));
+  margin-inline:auto;
+}
+
+/* شاشة عريضة (لاب / بي سي / موبايل أفقي): الفيديو الطولي على جنب والتفاصيل جنبه */
+@media (min-width:700px) and (orientation:landscape){
+  .modal:has(.modal-video-wrap.vertical.active){
+    --vid-h:min(84vh, 780px);
+    width:min(1080px,100%);
+    height:var(--vid-h);
+    max-height:none;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    grid-template-rows:auto minmax(0,1fr);
+  }
+  @supports (height:1dvh){
+    .modal:has(.modal-video-wrap.vertical.active){ --vid-h:min(84dvh, 780px); }
+  }
+  .modal:has(.modal-video-wrap.vertical.active) .modal-media{
+    display:contents; /* الفيديو والرابط الاحتياطي يبقوا عناصر مباشرة في الشبكة */
+  }
+  .modal:has(.modal-video-wrap.vertical.active) .modal-video-wrap.vertical{
+    grid-column:1; grid-row:1 / span 2;
+  }
+  .modal:has(.modal-video-wrap.vertical.active) .modal-video-wrap.vertical{
+    height:calc(var(--vid-h) - 2px);
+    width:calc((var(--vid-h) - 2px) * 9 / 16);
+  }
+  .modal:has(.modal-video-wrap.vertical.active) .modal-video-wrap.vertical .video-backdrop{ display:none; }
+  .modal:has(.modal-video-wrap.vertical.active) .modal-video-fallback{ grid-column:2; grid-row:1; }
+  .modal:has(.modal-video-wrap.vertical.active) .modal-body{
+    grid-column:2; grid-row:2; min-height:0; overflow-y:auto;
+    -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+  }
+}
+
+/* سكرول المودال ما يسحبش الصفحة اللي ورا على الموبايل */
+.modal{ overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
