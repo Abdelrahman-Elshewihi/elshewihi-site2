@@ -2,6 +2,18 @@
 <html lang="ar" dir="rtl" data-theme="dark">
 <head>
 <meta charset="UTF-8">
+<script>
+/* v25: routes to the Smooth side (lite.html) on weak devices or if the visitor chose it. Runs before any heavy asset loads. */
+(function(){try{
+var m=localStorage.getItem("mode");
+if(m==="pro")return;
+if(m==="lite"){location.replace("lite.html");return}
+var c=navigator.connection||{},mem=navigator.deviceMemory,cores=navigator.hardwareConcurrency;
+var slow=c.saveData||/(^|-)2g$/.test(c.effectiveType||"");
+var weak=slow||(mem&&mem<=2)||(cores&&cores<=2&&mem&&mem<=4);
+if(weak)location.replace("lite.html?auto=1");
+}catch(e){}})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="google-site-verification" content="nvR3E2ON1Q-37O62-3Mfu3flu0KNvl3IvWltUqOzDyI" />
 <title>عبدالرحمن بورتفوليو | المهندس عبدالرحمن وليد الشويحي – مصمم جرافيك ومونتير</title>
@@ -184,6 +196,7 @@
     <a href="#contact" data-i18n="navContact">تواصل</a>
   </div>
   <div class="nav-tools">
+    <a class="nav-btn nav-mode mono" id="liteSwitch" href="lite.html" title="Smooth" aria-label="Smooth" onclick="try{localStorage.setItem('mode','lite')}catch(e){}"><span aria-hidden="true">⚡</span><span class="lbl">Smooth</span></a>
     <button class="nav-btn" id="themeToggle" aria-label="Toggle theme" title="Dark / Light">◐</button>
     <button class="nav-btn" id="soundToggle" aria-label="Toggle sound" title="Sound">♪</button>
     <button class="nav-btn mono nav-lang" id="langToggle" aria-label="Language" title="Language">EN</button>
