@@ -1326,3 +1326,13 @@ footer .foot-seo{max-width:720px; margin:22px auto 0; font-size:12px; line-heigh
 }
 
 .modal{ overscroll-behavior:contain; }
+
+
+/* =====================================================
+   v25 — Smooth-mode switch pill (additive; does not change any existing style)
+===================================================== */
+.nav-btn.nav-mode{width:auto; padding:0 13px; gap:6px; font-size:12px; letter-spacing:.04em; white-space:nowrap;}
+@media (max-width:520px){
+  .navbar .nav-btn.nav-mode{width:29px; padding:0;}
+  .nav-btn.nav-mode .lbl{display:none;}
+}
