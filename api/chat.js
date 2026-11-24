@@ -28,7 +28,7 @@ const projectsData = require("../data/projects.json");
    في js/main.js -> const PROMO. لو غيّرت واحد فيهم هناك، غيّره هنا كمان.
 ===================================================== */
 const PROMO_MIRROR = {
-  active: true,
+  active: false,
   percent: 60
 };
 
