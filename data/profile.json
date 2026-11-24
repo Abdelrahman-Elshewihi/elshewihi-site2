@@ -9,8 +9,8 @@
   },
 
   "bio": {
-    "ar": "طالب في كلية الهندسة، بيحب البرمجة جدًا وبيحول الأفكار لتجارب رقمية متكاملة. شغله بيجمع بين البرمجة والتصميم الجرافيكي.",
-    "en": "An engineering student who loves programming and turning ideas into complete digital experiences. His work blends software development with graphic design."
+    "ar": "طالب في كلية الهندسة، مهتم بمجال تطوير المواقع وتجربة المستخدم، وعنده خبرة 5+ سنين في عالم الفيديو إيديتينج، وحالياً في طريقه لتعلم الموشن جرافيك. بيسعى يحوّل مهاراته لحلول لمشاكل موجودة بالفعل، وهدفه في الأول والآخر إنه يحلّ مشكلة العميل ويقدّم له خدمة فريدة.",
+    "en": "An engineering student interested in web development and user experience, with 5+ years of experience in video editing, currently learning motion graphics. He aims to turn his skills into solutions for problems that already exist; his goal, first and last, is to solve the client's problem and offer a unique service."
   },
 
   "availability": {
@@ -51,8 +51,8 @@
   ],
 
   "pricingPolicy": {
-    "ar": "الأسعار بالدولار الأمريكي (USD) وبتختلف حسب حجم المشروع وتفاصيله. الأسعار الموجودة في قسم الأعمال على الموقع هي الأسعار الفعلية الحالية (شاملة أي خصم شغال دلوقتي). للمشاريع اللي مكتوب عليها 'تواصل معنا'، السعر بيتحدد بعد معرفة تفاصيل الطلب.",
-    "en": "Prices are in US Dollars (USD) and vary based on project size and details. The prices shown in the Projects section on the site are the current actual prices (including any active discount). For projects marked 'Contact us', the price is determined after discussing the request details."
+    "ar": "الأسعار بالدولار الأمريكي (USD) وبتختلف حسب حجم المشروع وتفاصيله. الأسعار الموجودة في قسم الأعمال على الموقع هي الأسعار الفعلية الحالية. للمشاريع اللي مكتوب عليها 'تواصل معنا'، السعر بيتحدد بعد معرفة تفاصيل الطلب.",
+    "en": "Prices are in US Dollars (USD) and vary based on project size and details. The prices shown in the Projects section on the site are the current actual prices. For projects marked 'Contact us', the price is determined after discussing the request details."
   },
 
   "contact": {

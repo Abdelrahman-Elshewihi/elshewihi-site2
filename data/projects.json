@@ -116,7 +116,9 @@
       "featured": false,
       "video": "joUdpxubrNs",
       "videoVertical": true,
-      "tags": ["video"],
+      "tags": [
+        "video"
+      ],
       "category": {
         "ar": "مونتاج فيديو",
         "en": "Video Editing"
@@ -137,10 +139,45 @@
         "ar": "حرّكت النصوص بأسلوب التيبوجرافيا بحركة بسيطة وإيقاع مريح للعين، وركّزت على وضوح الكلمات وسهولة قراءتها. وده فيديو مجاني قدّمته كنموذج لشغلي في المونتاج.",
         "en": "I animated the text in a typography style with simple motion and an eye-friendly rhythm, focusing on clarity and readability. This is a free video, shared as a sample of my editing work."
       },
-      "tech": ["Motion Graphics", "Typography"],
+      "tech": [
+        "Motion Graphics",
+        "Typography"
+      ],
       "priceText": {
         "ar": "مجاني",
         "en": "Free"
+      }
+    },
+    {
+      "id": "motion-sfx-reel-03",
+      "featured": false,
+      "video": "uZTrhc5Ashg",
+      "videoVertical": true,
+      "tags": [
+        "video"
+      ],
+      "category": {
+        "ar": "موشن جرافيك",
+        "en": "Motion Graphics"
+      },
+      "title": {
+        "ar": "فيديو موشن جرافيك — مؤثرات بصرية وصوتية",
+        "en": "Motion Graphics Video — Visual & Sound Effects"
+      },
+      "desc": {
+        "ar": "فيديو موشن جرافيك بسيط، فيه مؤثرات بصرية وصوتية بتدّي الفيديو حس.",
+        "en": "A simple motion graphics video with visual and sound effects that give it a feel."
+      },
+      "did": {
+        "ar": "اشتغلت عليه بالكامل في Alight Motion، وضفت مؤثرات بصرية وصوتية تدّي الفيديو حس.",
+        "en": "Built entirely in Alight Motion, with visual and sound effects added to give the video a feel."
+      },
+      "tech": [
+        "Alight Motion"
+      ],
+      "price": {
+        "value": "10",
+        "currency": "USD"
       }
     },
     {
