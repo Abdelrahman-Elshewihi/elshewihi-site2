@@ -34,7 +34,7 @@
         "Brand Identity"
       ],
       "price": {
-        "value": "100",
+        "value": "50",
         "currency": "USD"
       }
     },
@@ -71,7 +71,7 @@
         "3D Render"
       ],
       "price": {
-        "value": "50",
+        "value": "20",
         "currency": "USD"
       }
     },
@@ -106,9 +106,9 @@
       "tech": [
         "Alight Motion"
       ],
-      "priceText": {
-        "ar": "تواصل معنا لمعرفة تفاصيل الباقات",
-        "en": "Contact us for package details"
+      "price": {
+        "value": "30",
+        "currency": "USD"
       }
     },
     {
@@ -176,47 +176,52 @@
         "Alight Motion"
       ],
       "price": {
-        "value": "10",
+        "value": "15",
         "currency": "USD"
       }
     },
     {
       "id": "pharmshelve",
       "featured": false,
-      "image": "images/project3.jpg",
-      "link": "https://pharmshelve.vercel.app",
+      "image": "images/pharmacy-shelves-app.jpg",
+      "link": "https://el-shewihi-eng.vercel.app/downloads/Pharmacy_Shelves.apk",
       "tags": [
-        "website",
         "app"
       ],
       "category": {
-        "ar": "تطبيق ويب",
-        "en": "Web App"
+        "ar": "تطبيق أندرويد",
+        "en": "Android App"
       },
       "title": {
-        "ar": "PharmShelve — دليل مرئي لأرفف المخزون الصيدلي",
-        "en": "PharmShelve — A Visual Guide to Pharmacy Stock Shelves"
+        "ar": "أرفف الصيدلية — دليل مرئي لأرفف المخزون",
+        "en": "Pharmacy Shelves — A Visual Guide to Stock Shelves"
       },
       "desc": {
-        "ar": "منصة ويب مبسّطة تحفظ صور أرفف المخزون، ليصل الصيدلي إلى موضع أي صنف في ثوانٍ ومن أي مكان.",
-        "en": "A streamlined web platform that keeps photos of stock shelves, so a pharmacist can locate any item in seconds, from anywhere."
+        "ar": "تطبيق أندرويد مبسّط يحفظ صور أرفف المخزون وملاحظات كل رف، ليصل الصيدلي إلى موضع أي صنف في ثوانٍ ومن أي مكان.",
+        "en": "A streamlined Android app that keeps photos and notes for each stock shelf, so a pharmacist can locate any item in seconds, from anywhere."
       },
       "problem": {
         "ar": "في الصيدليات، يُحفَظ المخزون الاحتياطي غالبًا في أرفف عالية ومغلقة، ويكون شخص واحد فقط هو المرجع في أماكن الأصناف. وكلما لزم التأكد من توفّر صنف، اضطر إلى إحضار سلّم والصعود إليه دون ضمان وجوده، فضلًا عن تعذّر الإجابة عن أي استفسار من الزملاء خارج ساعات العمل.",
         "en": "In pharmacies, reserve stock is often kept on high, locked shelves, and a single person is the go-to reference for where each item sits. Every time availability must be confirmed, he has to fetch a ladder and climb with no guarantee the item is there — and colleagues' questions go unanswered outside working hours."
       },
       "did": {
-        "ar": "صمّمتُ وطوّرتُ موقعًا بسيطًا وسريع الاستخدام يتيح رفع صور الأرفف وحفظها في مرجع واحد منظّم. وبذلك يستطيع الصيدلي، وهو في منزله أو خارج دوامه، أن يفتح الصورة ويحدد مكان الصنف بدقة ويردّ على زملائه فورًا — دون سلّم ودون عناء.",
-        "en": "I designed and built a simple, fast site for uploading shelf photos and keeping them in one organized reference. Even at home or off shift, the pharmacist can open the photo, pinpoint an item's exact place, and answer colleagues instantly — no ladder, no hassle."
+        "ar": "صمّمتُ وطوّرتُ تطبيقًا بسيطًا وسريع الاستخدام لأندرويد: سبعة أرفف، لكل رف صورته وملاحظته، وكل شيء يُحفظ تلقائيًا على الجهاز نفسه ويعمل من غير سيرفر. وبذلك يستطيع الصيدلي، وهو في منزله أو خارج دوامه، أن يفتح الرف ويحدد مكان الصنف بدقة ويردّ على زملائه فورًا — دون سلّم ودون عناء.",
+        "en": "I designed and built a simple, fast Android app: seven shelves, each with its own photo and note, all saved automatically on the device itself and working without a server. Even at home or off shift, the pharmacist can open a shelf, pinpoint an item's exact place, and answer colleagues instantly — no ladder, no hassle."
       },
       "tech": [
-        "Web App",
-        "Image Upload",
-        "Vercel"
+        "Android App",
+        "Capacitor",
+        "JavaScript",
+        "Liquid Glass UI"
       ],
       "price": {
         "value": "12.5",
         "currency": "USD"
+      },
+      "linkDownload": true,
+      "linkLabel": {
+        "ar": "تحميل التطبيق (APK) ↓",
+        "en": "Download the app (APK) ↓"
       }
     },
     {
