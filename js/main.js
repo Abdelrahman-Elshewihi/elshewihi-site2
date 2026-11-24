@@ -67,8 +67,8 @@ const I18N = {
     heroSub:"طالب في كلية الهندسة، بحب جدًا البرمجة وبحوّل الأفكار لتجارب رقمية متكاملة.",
     heroCta1:"شوف الأعمال", heroCta2:"تواصل واتساب",
     availTag:"متاح لمشاريع جديدة", scroll:"اسكرول",
-    aboutEyebrow:"مين أنا", aboutTitle:"مصمم جرافيك بيحب البرمجة.",
-    aboutDesc:"طالب في كلية الهندسة، بحب البرمجة وبحوّل الأفكار لتجارب رقمية متكاملة.",
+    aboutEyebrow:"مين أنا", aboutTitle:"البشمهندس عـبـدالرحـمـٰن وليد",
+    aboutDesc:"بدرس في كلية الهندسة، مهتم بمجال تطوير المواقع وتجربة المستخدم، خبرة 5+ سنين في عالم الفيديو إيديتينج، وحالياً في طريقي لتعلم الموشن جرافيك. بسعى إني أحوّل مهاراتي لحلول لمشاكل موجودة بالفعل، وبحب أستعمل مهاراتي في شغلي، وهدفي في الأول والآخر إني أحلّ لك مشكلتك وأقدملك خدمة فريدة.",
     b1t:"هندسة البرمجيات", b1d:"بحب البرمجة وبشتغل على تحويل الأفكار لحلول رقمية واضحة وشغالة.",
     b1quote:"\"الكود الجميل هو اللي بيشتغل صح، مش بس اللي شكله حلو.\"",
     b2t:"تصميم جرافيك", b2d:"لوجوهات، كروت شخصية، وهويات بصرية كاملة — وكمان مونتاج فيديو، موشن جرافيك، وتعليق صوتي باللغة العربية.",
@@ -90,8 +90,8 @@ const I18N = {
     heroSub:"Engineering student, graphic designer, and programming enthusiast — turning ideas into complete digital experiences.",
     heroCta1:"View Work", heroCta2:"Message on WhatsApp",
     availTag:"Available for new projects", scroll:"Scroll",
-    aboutEyebrow:"About", aboutTitle:"An engineering student who loves programming and design.",
-    aboutDesc:"An engineering student who loves programming and turns ideas into complete digital experiences.",
+    aboutEyebrow:"About", aboutTitle:"Eng. Abdelrahman Walid",
+    aboutDesc:"I study engineering and I'm interested in web development and user experience. I have 5+ years of experience in video editing, and I'm currently on my way to learning motion graphics. I aim to turn my skills into solutions for problems that already exist, and I love using my skills in my work. My goal, first and last, is to solve your problem and offer you a unique service.",
     b1t:"Software Engineering", b1d:"I like understanding what I build and turning ideas into clear, working solutions.",
     b1quote:"\"Beautiful code is code that works right, not just code that looks nice.\"",
     b2t:"Creative Work", b2d:"Logo design, business cards, and full brand identities — plus video editing, motion graphics, and Arabic voice over.",
@@ -331,6 +331,8 @@ function openModal(p){
   });
   document.getElementById("modalProblemLabel").textContent = t("modalProblem");
   document.getElementById("modalProblem").textContent = getLocalized(p.problem);
+  // مشروع من غير "مشكلة" (زي الفيديوهات الإبداعية): بنخفي البلوك كله بدل ما يظهر عنوان فاضي
+  document.getElementById("modalProblem").parentElement.style.display = p.problem ? "" : "none";
   document.getElementById("modalDidLabel").textContent = t("modalDid");
   document.getElementById("modalDid").textContent = getLocalized(p.did);
   document.getElementById("modalValueLabel").textContent = t("modalValue");
@@ -604,7 +606,7 @@ if(!prefersReduced && window.Lenis){
 // hero title reveal
 if(window.gsap){
   gsap.to(".hero-title .line span", { y:0, duration:1, ease:"power4.out", stagger:.1, delay:.35 });
-  gsap.fromTo(".hero-sub, .hero-cta-row", {opacity:0, y:18}, {opacity:1, y:0, duration:.9, ease:"power3.out", stagger:.12, delay:.6});
+  if(document.querySelector(".hero-sub, .hero-cta-row")) gsap.fromTo(".hero-sub, .hero-cta-row", {opacity:0, y:18}, {opacity:1, y:0, duration:.9, ease:"power3.out", stagger:.12, delay:.6});
   gsap.fromTo(".hero-avatar-wrap", {opacity:0, scale:.9}, {opacity:1, scale:1, duration:1, ease:"power3.out", delay:.4});
 
   // reveal on scroll
