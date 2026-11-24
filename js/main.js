@@ -63,7 +63,7 @@ const I18N = {
   ar:{
     skip:"تخطي إلى المحتوى", introSkip:"اضغط أي مكان للمتابعة",
     navAbout:"نبذة", navSkills:"المهارات", navProjects:"الأعمال", navContact:"تواصل", navCta:"لنبدأ",
-    heroTitle1:"طالب في كلية الهندسة،", heroTitle2:"مصمم جرافيك وبحب البرمجة.",
+    heroTitle1:"طالب في كلية الهندسة،", heroTitle2:"مصمم جرافيك وبيحب البرمجة.",
     heroSub:"طالب في كلية الهندسة، بحب جدًا البرمجة وبحوّل الأفكار لتجارب رقمية متكاملة.",
     heroCta1:"شوف الأعمال", heroCta2:"تواصل واتساب",
     availTag:"متاح لمشاريع جديدة", scroll:"اسكرول",
@@ -317,7 +317,14 @@ function openModal(p){
   }
   // p.link = رابط المشروع الحي (اختياري) — لو موجود بيظهر زرار "زيارة الموقع" في نافذة التفاصيل
   const visit = document.getElementById("modalVisit");
-  if(p.link){ visit.href = p.link; visit.classList.add("active"); }
+  if(p.link){
+    visit.href = p.link; visit.classList.add("active");
+    // linkLabel (اختياري): نص مخصص للزرار، زي "تحميل التطبيق"؛ و linkDownload:true بيخلي الرابط تحميل مباشر (APK مثلاً)
+    if(p.linkLabel){ visit.removeAttribute("data-i18n"); visit.textContent = getLocalized(p.linkLabel); }
+    else{ visit.setAttribute("data-i18n","visitSite"); visit.textContent = t("visitSite"); }
+    if(p.linkDownload){ visit.setAttribute("download",""); visit.removeAttribute("target"); }
+    else{ visit.removeAttribute("download"); visit.setAttribute("target","_blank"); }
+  }
   else{ visit.removeAttribute("href"); visit.classList.remove("active"); }
   document.getElementById("modalCat").textContent = getLocalized(p.category);
   document.getElementById("modalTitle").textContent = getLocalized(p.title);
