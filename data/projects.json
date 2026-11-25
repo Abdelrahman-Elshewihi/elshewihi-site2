@@ -184,7 +184,7 @@
       "id": "pharmshelve",
       "featured": false,
       "image": "images/pharmacy-shelves-app.jpg",
-      "link": "https://el-shewihi-eng.vercel.app/downloads/Pharmacy_Shelves.apk",
+      "link": "downloads/Pharmacy_Shelves.apk",
       "tags": [
         "app"
       ],
