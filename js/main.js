@@ -81,7 +81,7 @@ const I18N = {
     projValue:"القيمة التقديرية", viewLabel:"عرض", openLabel:"فتح",
     contactEyebrow:"لنبدأ مشروعك", whatsappBtn:"واتساب", linkedinBtn:"LinkedIn",
     footNote:"صُمم وبُني يدويًا — 2026. أول مشروع في الـPortfolio هو الـPortfolio نفسه.",
-    modalProblem:"المشكلة", modalDid:"اللي عملته", modalValue:"القيمة التقديرية", watchOnYoutube:"شاهد الفيديو على يوتيوب ↗", visitSite:"زيارة الموقع ↗"
+    modalProblem:"المشكلة", modalDid:"اللي عملته", modalValue:"القيمة التقديرية", watchOnYoutube:"شاهد الفيديو على يوتيوب ↗", visitSite:"زيارة الموقع ↗", appUnavailable:"التحميل غير متاح حالياً — اطلب التطبيق على واتساب ↗"
   },
   en:{
     skip:"Skip to content", introSkip:"Tap anywhere to continue",
@@ -104,7 +104,7 @@ const I18N = {
     projValue:"Est. value", viewLabel:"VIEW", openLabel:"OPEN",
     contactEyebrow:"Start your project", whatsappBtn:"WhatsApp", linkedinBtn:"LinkedIn",
     footNote:"Designed & built by hand — 2026. This portfolio is itself project #1.",
-    modalProblem:"The problem", modalDid:"What I did", modalValue:"Est. value", watchOnYoutube:"Watch on YouTube ↗", visitSite:"Visit the website ↗"
+    modalProblem:"The problem", modalDid:"What I did", modalValue:"Est. value", watchOnYoutube:"Watch on YouTube ↗", visitSite:"Visit the website ↗", appUnavailable:"Download is unavailable right now — request the app on WhatsApp ↗"
   }
 };
 let LANG = "ar";
@@ -324,6 +324,15 @@ function openModal(p){
     else{ visit.setAttribute("data-i18n","visitSite"); visit.textContent = t("visitSite"); }
     if(p.linkDownload){ visit.setAttribute("download",""); visit.removeAttribute("target"); }
     else{ visit.removeAttribute("download"); visit.setAttribute("target","_blank"); }
+    // لو ملف التحميل مش موجود على السيرفر (نشر ناقص مثلاً) بنحوّل الزرار لواتساب بدل ما الزائر يشوف "فشل التحميل"
+    if(p.linkDownload && new URL(p.link, location.href).origin === location.origin){
+      fetch(p.link, { method:"HEAD", cache:"no-store" }).then(r => { if(!r.ok) throw 0; }).catch(() => {
+        if(visit.getAttribute("href") !== p.link) return;
+        visit.removeAttribute("download"); visit.setAttribute("target","_blank"); visit.removeAttribute("data-i18n");
+        visit.href = "https://wa.me/201025857442?text=" + encodeURIComponent(getLocalized(p.title));
+        visit.textContent = t("appUnavailable");
+      });
+    }
   }
   else{ visit.removeAttribute("href"); visit.classList.remove("active"); }
   document.getElementById("modalCat").textContent = getLocalized(p.category);
