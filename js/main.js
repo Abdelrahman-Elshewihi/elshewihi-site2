@@ -27,48 +27,18 @@ let PROJECTS = [];
 let CURRENT_FILTER = "all"; // "all" أو أي كلمة من الـ tags (logo/card/website/video/app/voice)
 
 /* =====================================================
-   PROMO — إعدادات العرض/الخصم
-   ده المكان الوحيد اللي محتاج تعدل فيه عشان تشغّل/توقف أي عرض مستقبلي.
-
-   active   -> true يشغّل العرض على كل المشاريع اللي ليها سعر رقمي، false يوقفه فوراً
-   percent  -> نسبة الخصم (مثلاً 60 يعني خصم 60%)
-   label    -> نص لافتة العرض اللي بتظهر فوق قسم الأعمال
-
-   السعر الأصلي بيتحسب تلقائياً من نسبة الخصم — يعني لو غيّرت "percent"
-   كل أسعار المشاريع هتتحدث لوحدها من غير ما تلمس projects.json خالص.
-   المشاريع اللي سعرها نصي (زي "تواصل معنا") مش بتتأثر بالعرض.
-===================================================== */
-const PROMO = {
-  active: false,
-  percent: 60,
-  label: {
-    ar: "🎒 خصم %60 بمناسبة العودة المدرسية — لفترة محدودة",
-    en: "🎒 60% Off — Back to School Offer, Limited Time"
-  }
-};
-
-// بيحسب السعر بعد الخصم لأي مشروع، وبيرجع null لو العرض متوقف أو المشروع سعره نصي مش رقمي
-function getDiscount(project){
-  if(!PROMO.active || !project.price || !project.price.value) return null;
-  const original = parseFloat(String(project.price.value).replace(/,/g, ""));
-  if(isNaN(original)) return null;
-  const discounted = Math.round(original * (1 - PROMO.percent / 100));
-  return { original, discounted, currency: project.price.currency };
-}
-
-/* =====================================================
    i18n
 ===================================================== */
 const I18N = {
   ar:{
-    skip:"تخطي إلى المحتوى", introSkip:"اضغط أي مكان للمتابعة",
+    skip:"تخطي إلى المحتوى",
     navAbout:"نبذة", navSkills:"المهارات", navProjects:"الأعمال", navContact:"تواصل", navCta:"لنبدأ",
     heroTitle1:"طالب في كلية الهندسة،", heroTitle2:"مصمم جرافيك وبيحب البرمجة.",
-    heroSub:"طالب في كلية الهندسة، بحب جدًا البرمجة وبحوّل الأفكار لتجارب رقمية متكاملة.",
+    heroSub:"ببني تجارب رقمية تجمع بين التفكير الهندسي، التصميم، والبرمجة — من الفكرة لحد تنفيذ يخدم هدفك.",
     heroCta1:"شوف الأعمال", heroCta2:"تواصل واتساب",
     availTag:"متاح لمشاريع جديدة", scroll:"اسكرول",
     aboutEyebrow:"مين أنا", aboutTitle:"البشمهندس عـبـدالرحـمـٰن وليد",
-    aboutDesc:"بدرس في كلية الهندسة، مهتم بمجال تطوير المواقع وتجربة المستخدم، خبرة 5+ سنين في عالم الفيديو إيديتينج، وحالياً في طريقي لتعلم الموشن جرافيك. بسعى إني أحوّل مهاراتي لحلول لمشاكل موجودة بالفعل، وبحب أستعمل مهاراتي في شغلي، وهدفي في الأول والآخر إني أحلّ لك مشكلتك وأقدملك خدمة فريدة.",
+    aboutDesc:"ببدأ كل مشروع بفهم الهدف والتحدّي الحقيقي، وبعدها بختار أبسط حل يحقق نتيجة واضحة. عندي خبرة تتجاوز 5 سنوات في تحرير الفيديو، وبشتغل على تطوير مهاراتي في بناء المواقع وتجربة المستخدم؛ وده بيساعدني أجمع بين الذوق البصري والتفكير المنظّم عشان أقدّم شغل عملي، مش مجرد شكل حلو.",
     b1t:"هندسة البرمجيات", b1d:"بحب البرمجة وبشتغل على تحويل الأفكار لحلول رقمية واضحة وشغالة.",
     b1quote:"\"الكود الجميل هو اللي بيشتغل صح، مش بس اللي شكله حلو.\"",
     b2t:"تصميم جرافيك", b2d:"لوجوهات، كروت شخصية، وهويات بصرية كاملة — وكمان مونتاج فيديو، موشن جرافيك، وتعليق صوتي باللغة العربية.",
@@ -78,20 +48,20 @@ const I18N = {
     sg1:"التصميم والهوية البصرية", sg2:"تطوير الويب", sg4:"الأدوات والتقنيات",
     projEyebrow:"الأعمال", projTitle:"أعمال أنجزت بعناية", projDesc:"اضغط على أي مشروع لعرض التفاصيل كاملة، وعلى الكمبيوتر هتلاقي تفاعلات إضافية.",
     filterAll:"الكل", filterLogo:"لوجوهات", filterCard:"كروت شخصية", filterWebsite:"مواقع", filterVideo:"مونتاج", filterApp:"تطبيقات", filterVoice:"فويس أوفر",
-    projValue:"القيمة التقديرية", viewLabel:"عرض", openLabel:"فتح",
+    viewLabel:"عرض", openLabel:"فتح",
     contactEyebrow:"لنبدأ مشروعك", whatsappBtn:"واتساب", linkedinBtn:"LinkedIn",
     footNote:"صُمم وبُني يدويًا — 2026. أول مشروع في الـPortfolio هو الـPortfolio نفسه.",
-    modalProblem:"المشكلة", modalDid:"اللي عملته", modalValue:"القيمة التقديرية", watchOnYoutube:"شاهد الفيديو على يوتيوب ↗", visitSite:"زيارة الموقع ↗", appUnavailable:"التحميل غير متاح حالياً — اطلب التطبيق على واتساب ↗"
+    modalProblem:"التحدي", modalDid:"الحل والتنفيذ", watchOnYoutube:"شاهد الفيديو على يوتيوب ↗", visitSite:"زيارة الموقع ↗", appUnavailable:"التحميل غير متاح حالياً — اطلب التطبيق على واتساب ↗"
   },
   en:{
-    skip:"Skip to content", introSkip:"Tap anywhere to continue",
+    skip:"Skip to content",
     navAbout:"About", navSkills:"Skills", navProjects:"Work", navContact:"Contact", navCta:"Let's talk",
     heroTitle1:"Engineering student,", heroTitle2:"Graphic designer who loves programming.",
-    heroSub:"Engineering student, graphic designer, and programming enthusiast — turning ideas into complete digital experiences.",
+    heroSub:"I build digital experiences that bring engineering thinking, design, and development together — from the first idea to a purposeful result.",
     heroCta1:"View Work", heroCta2:"Message on WhatsApp",
     availTag:"Available for new projects", scroll:"Scroll",
     aboutEyebrow:"About", aboutTitle:"Eng. Abdelrahman Walid",
-    aboutDesc:"I study engineering and I'm interested in web development and user experience. I have 5+ years of experience in video editing, and I'm currently on my way to learning motion graphics. I aim to turn my skills into solutions for problems that already exist, and I love using my skills in my work. My goal, first and last, is to solve your problem and offer you a unique service.",
+    aboutDesc:"I start every project by understanding its real goal and challenge, then choose a clear solution built around that purpose. With 5+ years of video-editing experience and a growing focus on web development and user experience, I bring visual craft and structured thinking together to create work that is useful — not just attractive.",
     b1t:"Software Engineering", b1d:"I like understanding what I build and turning ideas into clear, working solutions.",
     b1quote:"\"Beautiful code is code that works right, not just code that looks nice.\"",
     b2t:"Creative Work", b2d:"Logo design, business cards, and full brand identities — plus video editing, motion graphics, and Arabic voice over.",
@@ -101,10 +71,10 @@ const I18N = {
     sg1:"Visual Design", sg2:"Web Development", sg4:"Tools & Technologies",
     projEyebrow:"Work", projTitle:"Projects crafted with care", projDesc:"Click any project for the full details, with extra interactions on desktop.",
     filterAll:"All", filterLogo:"Logos", filterCard:"Business Cards", filterWebsite:"Websites", filterVideo:"Video Editing", filterApp:"Apps", filterVoice:"Voice Over",
-    projValue:"Est. value", viewLabel:"VIEW", openLabel:"OPEN",
+    viewLabel:"VIEW", openLabel:"OPEN",
     contactEyebrow:"Start your project", whatsappBtn:"WhatsApp", linkedinBtn:"LinkedIn",
     footNote:"Designed & built by hand — 2026. This portfolio is itself project #1.",
-    modalProblem:"The problem", modalDid:"What I did", modalValue:"Est. value", watchOnYoutube:"Watch on YouTube ↗", visitSite:"Visit the website ↗", appUnavailable:"Download is unavailable right now — request the app on WhatsApp ↗"
+    modalProblem:"The challenge", modalDid:"Solution & Execution", watchOnYoutube:"Watch on YouTube ↗", visitSite:"Visit the website ↗", appUnavailable:"Download is unavailable right now — request the app on WhatsApp ↗"
   }
 };
 let LANG = "ar";
@@ -122,19 +92,6 @@ function applyI18n(){
   document.documentElement.lang = LANG;
   document.documentElement.dir = LANG==="ar" ? "rtl" : "ltr";
   document.getElementById("langToggle").textContent = LANG==="ar" ? "EN" : "AR";
-  applyPromoBanner();
-}
-
-// بيظهر لافتة العرض فوق قسم الأعمال لو PROMO.active = true، وبيخفيها تلقائي لو العرض اتوقف
-function applyPromoBanner(){
-  const banner = document.getElementById("promoBanner");
-  if(!banner) return;
-  if(PROMO.active){
-    banner.textContent = PROMO.label[LANG] || PROMO.label.ar;
-    banner.classList.add("active");
-  }else{
-    banner.classList.remove("active");
-  }
 }
 
 /* =====================================================
@@ -169,15 +126,6 @@ function renderProjects(){
 
     media.appendChild(image);
 
-    // شارة "-60%" ثابتة على غلاف أي مشروع سعره اتخفّض، وبتفضل ظاهرة على الموبايل والديسكتوب من غير الحاجة لعمل hover
-    const discount = getDiscount(project);
-    if(discount){
-      const saleBadge = document.createElement("div");
-      saleBadge.className = "sale-badge";
-      saleBadge.textContent = `-${PROMO.percent}%`;
-      media.appendChild(saleBadge);
-    }
-
     // أيقونة تشغيل فوق غلاف أي مشروع فيه فيديو أو تسجيل صوتي (تدل على إن فيه ميديا تتشغل)
     if(project.video || project.audio){
       const playIcon = document.createElement("div");
@@ -205,31 +153,8 @@ function renderProjects(){
     open.className = "proj-open";
     open.innerHTML = `${t("openLabel")} <span aria-hidden="true">↗</span>`;
 
-    const value = document.createElement("div");
-    value.className = "proj-value";
-
-    const valueLabel = document.createElement("span");
-    valueLabel.className = "k";
-    valueLabel.textContent = t("projValue");
-
-    const valueText = document.createElement("span");
-    valueText.className = "v";
-    // priceText (لو موجود) بيبقى بديل نصي زي "تواصل معنا"، وبيتقدم على أي حاجة تانية
-    // بعده: لو فيه خصم فعّال، بيتعرض السعر الأصلي مشطوب + السعر الجديد بارز
-    // وإلا السعر العادي زي ما هو
-    if(project.priceText){
-      valueText.textContent = getLocalized(project.priceText);
-    }else if(discount){
-      // ملحوظة مهمة: الاتجاه dir="ltr" هنا إجباري — من غيره المتصفح بيقلب ترتيب
-      // الأرقام والعملة عشوائي لأن الصفحة كلها RTL والأرقام طبيعتها LTR
-      valueText.innerHTML = `<span class="price-value" dir="ltr"><s class="price-original">${discount.original}</s> <b class="price-discounted">${discount.discounted}</b> <span class="price-currency">${discount.currency}</span></span>`;
-    }else{
-      valueText.innerHTML = `<span class="price-value" dir="ltr">${project.price.value} ${project.price.currency}</span>`;
-    }
-
     body.append(category, title, description, open);
-    value.append(valueLabel, valueText);
-    card.append(glare, media, body, value);
+    card.append(glare, media, body);
 
     card.addEventListener("click", () => openModal(project));
     card.addEventListener("keydown", event => {
@@ -351,22 +276,6 @@ function openModal(p){
   document.getElementById("modalProblem").parentElement.style.display = p.problem ? "" : "none";
   document.getElementById("modalDidLabel").textContent = t("modalDid");
   document.getElementById("modalDid").textContent = getLocalized(p.did);
-  document.getElementById("modalValueLabel").textContent = t("modalValue");
-  // priceText (لو موجود) بيبقى بديل نصي زي "تواصل معنا"، وبيتقدم على أي حاجة تانية
-  const modalDiscount = getDiscount(p);
-  const modalSaleBadge = document.getElementById("modalSaleBadge");
-  const modalPriceEl = document.getElementById("modalPrice");
-  if(p.priceText){
-    modalPriceEl.textContent = getLocalized(p.priceText);
-    modalSaleBadge.textContent = "";
-  }else if(modalDiscount){
-    // نفس ملحوظة الاتجاه: dir="ltr" إجباري عشان الترتيب مايتقلبش في صفحة RTL
-    modalPriceEl.innerHTML = `<span class="price-value" dir="ltr"><s class="price-original">${modalDiscount.original}</s> <span class="price-discounted">${modalDiscount.discounted}</span> <span class="price-currency">${modalDiscount.currency}</span></span>`;
-    modalSaleBadge.textContent = `-${PROMO.percent}%`;
-  }else{
-    modalPriceEl.innerHTML = `<span class="price-value" dir="ltr">${p.price.value} ${p.price.currency}</span>`;
-    modalSaleBadge.textContent = "";
-  }
   const overlay = document.getElementById("modalOverlay");
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden","false");
@@ -524,35 +433,6 @@ if(isTouch){
     });
   });
 }
-
-/* =====================================================
-   INTRO
-===================================================== */
-(function intro(){
-  const el = document.getElementById("intro");
-  const fill = document.getElementById("introFill");
-  const skip = document.getElementById("introSkip");
-  const seen = sessionStorage.getItem("introSeen");
-  if(seen){ el.classList.add("done"); document.body.style.overflow=""; return; }
-  document.body.style.overflow = "hidden";
-  let done = false;
-  function finish(){
-    if(done) return; done = true;
-    sessionStorage.setItem("introSeen","1");
-    el.classList.add("done");
-    document.body.style.overflow = "";
-  }
-  if(window.gsap){
-    gsap.to(fill, { width:"100%", duration:.75, ease:"power2.inOut", onComplete: ()=> setTimeout(finish, 120) });
-    gsap.fromTo(".intro-mark", {opacity:0, y:14}, {opacity:1, y:0, duration:.6, ease:"power2.out"});
-    gsap.to(skip, {opacity:1, delay:.55, duration:.3});
-  }else{
-    fill.style.width = "100%";
-    setTimeout(finish, 1200);
-  }
-  el.addEventListener("click", finish);
-  setTimeout(finish, 1600); // hard cap so it never blocks content
-})();
 
 /* =====================================================
    LENIS + GSAP SCROLL
