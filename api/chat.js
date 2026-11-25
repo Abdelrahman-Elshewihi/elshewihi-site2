@@ -55,7 +55,7 @@ function describeProject(project) {
       ? `السعر بعد الخصم ${discount.discounted} ${discount.currency} (السعر الأصلي ${discount.original} ${discount.currency})`
       : `${project.price?.value} ${project.price?.currency}`;
   }
-  return `- ${title}: ${desc} | السعر: ${priceLine}${project.link ? ` | الرابط: ${project.link}` : ""}`;
+  return `- ${title}: ${desc} | السعر: ${priceLine}${project.link ? ` | الرابط: ${/^https?:/.test(project.link) ? project.link : "https://el-shewihi-eng.vercel.app/" + project.link.replace(/^\//, "")}` : ""}`;
 }
 
 // بيبني "ملف التعريف" الكامل اللي بيتبعت للموديل قبل كل سؤال
